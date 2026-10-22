@@ -17,6 +17,15 @@ from utils.i18n import get_translator, load_translations
 _invoice_locks: dict[int, asyncio.Lock] = {}
 
 
+def _admin_ids() -> list[int]:
+    """ADMIN_ID в конфиге может быть одним числом или списком."""
+    return list(ADMIN_ID) if isinstance(ADMIN_ID, (list, tuple, set)) else [ADMIN_ID]
+
+
+def _is_admin(user_id: int) -> bool:
+    return user_id in _admin_ids()
+
+
 def _get_lock(user_id: int) -> asyncio.Lock:
     if user_id not in _invoice_locks:
         _invoice_locks[user_id] = asyncio.Lock()
@@ -187,12 +196,20 @@ async def handle_donate_callback(client: Client, callback_query):
             await callback_query.answer()
 
         elif data.startswith("refund_"):
+            # Возврат может сделать только админ: callback_data можно подделать,
+            # поэтому проверяем того, кто нажал кнопку, а не то, где она показана.
+            if not _is_admin(user_id):
+                LOGGER.warning(f"⛔ Unauthorized refund attempt by {user_id}: {data}")
+                await callback_query.answer("⛔ Access denied", show_alert=True)
+                return
+
             payment_id = data[7:]
             payment = get_payment(payment_id)
             if not payment:
                 await callback_query.answer("❌ Payment not found", show_alert=True)
                 return
             await client.refund_star_payment(payment["user_id"], payment["charge_id"])
+            LOGGER.info(f"↩️ Refund by admin {user_id}: payment={payment_id}, user={payment['user_id']}")
             await callback_query.answer("✅ Refund sent!", show_alert=True)
 
     except Exception as e:
@@ -243,11 +260,10 @@ async def process_successful_payment(client: Client, message):
             ]]),
         )
 
-        admin_ids = ADMIN_ID if isinstance(ADMIN_ID, (list, tuple)) else [ADMIN_ID]
         refund_btn = InlineKeyboardMarkup([[
             InlineKeyboardButton(f"Refund {amount} ⭐️", callback_data=f"refund_{payment_id}")
         ]])
-        for admin_id in admin_ids:
+        for admin_id in _admin_ids():
             try:
                 await client.send_message(
                     chat_id=admin_id,
@@ -272,6 +288,6 @@ async def process_successful_payment(client: Client, message):
             text=_("donate_payment_declined"),
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton(_("donate_contact_support"), url=f"tg://user?id={ADMIN_ID}")
+                InlineKeyboardButton(_("donate_contact_support"), url=f"tg://user?id={_admin_ids()[0]}")
             ]]),
         )
