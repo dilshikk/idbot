@@ -7,8 +7,10 @@ __pycache__/
 venv/
 .venv/
 
-# Environment
+# Environment (секреты). Пример настроек хранится в .env.example
 .env
+.env.*
+!.env.example
 
 # Logs
 logs/
@@ -31,10 +33,14 @@ alembic.ini
 
 tests/
 
-config.py
+# config.py больше не содержит секретов и хранится в git
 TG_iBot.session
+*.session
+*.session-journal
 babel.config
 Makefile
 
 database.db
 database/database.db
+database/database.db-wal
+database/database.db-shm
