@@ -3,6 +3,16 @@ from dateutil.relativedelta import relativedelta
 from pyrogram.enums import ChatType, UserStatus
 from utils import LOGGER
 
+# У Telegram ровно 5 продакшн дата-центров.
+# DC1 и DC3 находятся в Майами, DC2 и DC4 в Амстердаме, DC5 в Сингапуре.
+DC_LOCATIONS = {
+    1: "MIA, Miami, USA, US",
+    2: "AMS, Amsterdam, Netherlands, NL",
+    3: "MIA, Miami, USA, US",
+    4: "AMS, Amsterdam, Netherlands, NL",
+    5: "SIN, Singapore, SG",
+}
+
 
 def calculate_account_age(creation_date, _=lambda x: x):
     delta = relativedelta(datetime.now(), creation_date)
@@ -38,25 +48,10 @@ def get_status_display(status, _=lambda x: x):
     return _(status_map.get(status, "unknown"))
 
 
-def get_dc_location(dc_id: int, _=lambda x: x) -> str:
-    dc_locations = {
-        1:  "MIA, Miami, USA, US",
-        2:  "AMS, Amsterdam, Netherlands, NL",
-        3:  "MBA, Mumbai, India, IN",
-        4:  "STO, Stockholm, Sweden, SE",
-        5:  "SIN, Singapore, SG",
-        6:  "LHR, London, United Kingdom, GB",
-        7:  "FRA, Frankfurt, Germany, DE",
-        8:  "JFK, New York, USA, US",
-        9:  "HKG, Hong Kong, HK",
-        10: "TYO, Tokyo, Japan, JP",
-        11: "SYD, Sydney, Australia, AU",
-        12: "GRU, São Paulo, Brazil, BR",
-        13: "DXB, Dubai, UAE, AE",
-        14: "CDG, Paris, France, FR",
-        15: "ICN, Seoul, South Korea, KR",
-    }
-    return dc_locations.get(dc_id, _("unknown"))
+def get_dc_location(dc_id: int | None, _=lambda x: x) -> str:
+    # dc_id известен только если у профиля есть публичное фото, иначе он None/0
+    location = DC_LOCATIONS.get(dc_id or 0)
+    return f"DC{dc_id} · {location}" if location else _("unknown")
 
 
 async def get_profile_photo_file_id(client, entity_id):
