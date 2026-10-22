@@ -18,6 +18,7 @@ from modules.menu import settings_menu, setup_bot_commands  # noqa: F401
 from modules.help import help_command  # noqa: F401
 from modules.my import my_command  # noqa: F401
 from modules.admin import admin_command  # noqa: F401
+from modules.stats import stats_command  # noqa: F401
 from modules.language import choose_language, set_user_language  # noqa: F401
 from modules.me import me_command  # noqa: F401
 from modules.info import info_command  # noqa: F401
