@@ -7,14 +7,8 @@ from miscs.startbtn import get_menu_buttons
 from bot import bot
 from config import COMMAND_PREFIX, LOG_GROUP_ID
 from database import add_user, get_lang, set_lang, user_exists
-from utils.i18n import get_translator
+from utils.i18n import get_translator, LANGUAGES
 from datetime import datetime
-
-LANGUAGES = {
-    "ru": "🇷🇺 Русский",
-    "en": "🇬🇧 English",
-    "uz": "🇺🇿 Oʻzbekcha",
-}
 
 
 @bot.on_message(filters.command("start", prefixes=COMMAND_PREFIX.split("|")))
@@ -28,9 +22,9 @@ async def start(bot: Client, message):
         username = message.from_user.username or "N/A"
         LOGGER.info(f"--- /start from {user_id} (@{username}) ---")
 
-        current_lang = get_lang(user_id)
-
-        if not user_exists(user_id) or not current_lang:
+        # get_lang всегда возвращает язык (по умолчанию "ru"),
+        # поэтому новичка определяем только по наличию в базе
+        if not user_exists(user_id):
             keyboard = InlineKeyboardMarkup([
                 [InlineKeyboardButton(name, callback_data=f"set_lang_start:{code}")]
                 for code, name in LANGUAGES.items()
@@ -43,6 +37,7 @@ async def start(bot: Client, message):
             LOGGER.info(f"Language selection offered to new user {user_id}")
             return
 
+        current_lang = get_lang(user_id)
         _ = get_translator(current_lang)
         await send_welcome_message(bot, message.chat.id, user_id, _, current_lang)
 
