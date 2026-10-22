@@ -2,7 +2,7 @@ import sqlite3
 import os
 import logging
 import threading
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from contextlib import contextmanager
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -22,9 +22,18 @@ _username_cache: dict[int, str] = {}
 # Защита от разрастания памяти при большом числе пользователей
 _CACHE_LIMIT = 200_000
 
+_TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+TOP_DONORS_LIMIT = 5
+
 
 def _now() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+    return datetime.now(timezone.utc).strftime(_TIME_FORMAT)
+
+
+def _since(days: int) -> str:
+    """Момент N дней назад в том же формате, что reg_date и created_at.
+    Формат одинаковый, поэтому даты можно сравнивать как строки."""
+    return (datetime.now(timezone.utc) - timedelta(days=days)).strftime(_TIME_FORMAT)
 
 
 def _remember(cache: dict, key: int, value: str) -> None:
@@ -92,6 +101,9 @@ def init_db() -> None:
         # Отметка о возврате: раньше один платёж можно было пытаться вернуть много раз
         _add_column_if_missing(conn, "payments", "refunded_at", "refunded_at TEXT")
         conn.execute("CREATE INDEX IF NOT EXISTS idx_payments_charge ON payments(charge_id)")
+        # Для быстрого подсчёта новых пользователей и донатов за период
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_users_reg_date ON users(reg_date)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_payments_created ON payments(created_at)")
 
 
 def user_exists(telegram_id: int) -> bool:
@@ -228,3 +240,67 @@ def release_refund(payment_id: str) -> None:
     """Снимает отметку, если Telegram не принял возврат."""
     with get_conn() as conn:
         conn.execute("UPDATE payments SET refunded_at = NULL WHERE id = ?", (payment_id,))
+
+
+def get_stats() -> dict | None:
+    """Сводка для /stats. Донаты считаются без возвращённых.
+    None, если база недоступна."""
+    day, week, month = _since(1), _since(7), _since(30)
+    try:
+        with get_conn() as conn:
+            users = conn.execute(
+                """SELECT COUNT(*) AS total,
+                          COALESCE(SUM(reg_date >= ?), 0) AS day,
+                          COALESCE(SUM(reg_date >= ?), 0) AS week,
+                          COALESCE(SUM(reg_date >= ?), 0) AS month
+                   FROM users""",
+                (day, week, month),
+            ).fetchone()
+            by_lang = conn.execute(
+                """SELECT COALESCE(lang, ?) AS lang, COUNT(*) AS cnt
+                   FROM users GROUP BY 1 ORDER BY cnt DESC""",
+                (DEFAULT_LANG,),
+            ).fetchall()
+            pay = conn.execute(
+                """SELECT
+                     COALESCE(SUM(refunded_at IS NULL), 0) AS cnt,
+                     COALESCE(SUM(CASE WHEN refunded_at IS NULL THEN amount END), 0) AS total,
+                     COALESCE(SUM(refunded_at IS NULL AND created_at >= ?), 0) AS week_cnt,
+                     COALESCE(SUM(CASE WHEN refunded_at IS NULL AND created_at >= ? THEN amount END), 0) AS week_sum,
+                     COALESCE(SUM(refunded_at IS NULL AND created_at >= ?), 0) AS month_cnt,
+                     COALESCE(SUM(CASE WHEN refunded_at IS NULL AND created_at >= ? THEN amount END), 0) AS month_sum,
+                     COALESCE(SUM(refunded_at IS NOT NULL), 0) AS ref_cnt,
+                     COALESCE(SUM(CASE WHEN refunded_at IS NOT NULL THEN amount END), 0) AS ref_sum
+                   FROM payments""",
+                (week, week, month, month),
+            ).fetchone()
+            top = conn.execute(
+                """SELECT user_id, MAX(full_name) AS name, SUM(amount) AS total
+                   FROM payments WHERE refunded_at IS NULL
+                   GROUP BY user_id ORDER BY total DESC LIMIT ?""",
+                (TOP_DONORS_LIMIT,),
+            ).fetchall()
+    except Exception as e:
+        LOGGER.error(f"Error collecting stats: {e}", exc_info=True)
+        return None
+
+    return {
+        "users": {
+            "total": users["total"],
+            "day": users["day"],
+            "week": users["week"],
+            "month": users["month"],
+            "by_lang": [(row["lang"], row["cnt"]) for row in by_lang],
+        },
+        "payments": {
+            "count": pay["cnt"],
+            "sum": pay["total"],
+            "week_count": pay["week_cnt"],
+            "week_sum": pay["week_sum"],
+            "month_count": pay["month_cnt"],
+            "month_sum": pay["month_sum"],
+            "refunded_count": pay["ref_cnt"],
+            "refunded_sum": pay["ref_sum"],
+            "top": [(row["user_id"], row["name"] or str(row["user_id"]), row["total"]) for row in top],
+        },
+    }
