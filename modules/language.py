@@ -5,13 +5,7 @@ from utils import LOGGER
 from database import get_lang, set_lang
 from config import COMMAND_PREFIX
 from miscs.startbtn import get_menu_buttons
-from utils.i18n import get_translator, load_translations
-
-LANGUAGES = {
-    "ru": "🇷🇺 Русский",
-    "en": "🇬🇧 English",
-    "uz": "🇺🇿 Oʻzbekcha",
-}
+from utils.i18n import get_translator, load_translations, LANGUAGES
 
 
 def _get_all_lang_button_variants() -> set:
