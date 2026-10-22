@@ -8,6 +8,7 @@ from contextlib import contextmanager
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "database.db")
 DEFAULT_LANG = "ru"
+NO_USERNAME = "unknown"
 LOGGER = logging.getLogger(__name__)
 
 # Одно постоянное подключение вместо нового на каждый запрос:
@@ -17,6 +18,8 @@ _lock = threading.Lock()
 
 # Язык читается на каждое сообщение, поэтому держим его в памяти.
 _lang_cache: dict[int, str] = {}
+# Последний известный ник: пишем в базу только когда он реально изменился.
+_username_cache: dict[int, str] = {}
 
 
 def _get_connection() -> sqlite3.Connection:
@@ -90,7 +93,7 @@ def user_exists(telegram_id: int) -> bool:
 def add_user(user) -> bool:
     try:
         lang = (user.language_code or DEFAULT_LANG).split("-")[0]
-        username = user.username or "unknown"
+        username = user.username or NO_USERNAME
         with get_conn() as conn:
             # INSERT OR IGNORE атомарен: нет гонки между проверкой и вставкой
             cursor = conn.execute(
@@ -100,10 +103,35 @@ def add_user(user) -> bool:
         if cursor.rowcount == 0:
             return False
         _lang_cache[user.id] = lang
+        _username_cache[user.id] = username
         LOGGER.info(f"🆕 New user: id={user.id}, @{username}, lang={lang}")
         return True
     except Exception as e:
         LOGGER.error(f"Error adding user {getattr(user, 'id', '?')}: {e}", exc_info=True)
+        return False
+
+
+def sync_username(telegram_id: int, username: str | None) -> bool:
+    """Обновляет ник в базе, если пользователь его сменил.
+    Возвращает True, если запись в базе изменилась."""
+    new = username or NO_USERNAME
+    if _username_cache.get(telegram_id) == new:
+        return False  # ник не менялся: базу не трогаем
+    try:
+        with get_conn() as conn:
+            # IS NOT: не перезаписываем строку, если ник в базе уже такой же
+            cursor = conn.execute(
+                "UPDATE users SET username = ? WHERE telegram_id = ? AND username IS NOT ?",
+                (new, telegram_id, new),
+            )
+        # Запоминаем и для тех, кого ещё нет в базе: add_user сохранит тот же ник
+        _username_cache[telegram_id] = new
+        if cursor.rowcount > 0:
+            LOGGER.info(f"✏️ Username updated: id={telegram_id} -> @{new}")
+            return True
+        return False
+    except Exception as e:
+        LOGGER.error(f"Error syncing username for {telegram_id}: {e}", exc_info=True)
         return False
 
 
