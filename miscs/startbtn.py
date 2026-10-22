@@ -18,61 +18,54 @@ _REQUEST_DEFAULTS = dict(
 
 
 def get_menu_buttons(user_id: int) -> ReplyKeyboardMarkup:
-    lang = get_lang(user_id)
-    _ = get_translator(lang)
+    """Главное меню: только 4 основных действия и «Настройки».
+    Группы и каналы больше не делятся на публичные и приватные:
+    Telegram сам покажет все подходящие чаты в одном списке."""
+    _ = get_translator(get_lang(user_id))
 
-    buttons = ReplyKeyboardMarkup(
+    return ReplyKeyboardMarkup(
         [
             [
                 KeyboardButton(
-                    _("menu_btn_user_info"),
+                    _("menu_btn_user"),
                     request_user=RequestPeerTypeUser(button_id=1, is_bot=False, **_REQUEST_DEFAULTS),
                 ),
-            ],
-            [
-                KeyboardButton(
-                    _("menu_btn_public_group"),
-                    request_chat=RequestPeerTypeChat(button_id=7, is_username=True, **_REQUEST_DEFAULTS),
-                ),
-                KeyboardButton(
-                    _("menu_btn_private_group"),
-                    request_chat=RequestPeerTypeChat(button_id=6, is_username=False, **_REQUEST_DEFAULTS),
-                ),
-            ],
-            [
-                KeyboardButton(
-                    _("menu_btn_public_channel"),
-                    request_chat=RequestPeerTypeChannel(button_id=5, is_username=True, **_REQUEST_DEFAULTS),
-                ),
-                KeyboardButton(
-                    _("menu_btn_private_channel"),
-                    request_chat=RequestPeerTypeChannel(button_id=4, is_username=False, **_REQUEST_DEFAULTS),
-                ),
-            ],
-            [
                 KeyboardButton(
                     _("menu_btn_bot"),
                     request_user=RequestPeerTypeUser(button_id=2, is_bot=True, **_REQUEST_DEFAULTS),
                 ),
+            ],
+            [
                 KeyboardButton(
-                    _("menu_btn_premium"),
-                    request_user=RequestPeerTypeUser(button_id=3, is_bot=False, is_premium=True, **_REQUEST_DEFAULTS),
+                    _("menu_btn_group"),
+                    request_chat=RequestPeerTypeChat(button_id=6, **_REQUEST_DEFAULTS),
+                ),
+                KeyboardButton(
+                    _("menu_btn_channel"),
+                    request_chat=RequestPeerTypeChannel(button_id=4, **_REQUEST_DEFAULTS),
                 ),
             ],
-            [
-                KeyboardButton(_("admin_button")),
-                KeyboardButton(_("owner_button")),
-            ],
-            [
-                KeyboardButton(_("donate_button")),
-                KeyboardButton(_("language_button")),
-            ],
+            [KeyboardButton(_("settings_button"))],
         ],
         resize_keyboard=True,
         placeholder=_("menu_placeholder"),
     )
-    LOGGER.info(f"Menu buttons generated for lang={lang}")
-    return buttons
+
+
+def get_settings_buttons(user_id: int) -> ReplyKeyboardMarkup:
+    """Подменю «Настройки»: всё второстепенное собрано здесь."""
+    _ = get_translator(get_lang(user_id))
+
+    return ReplyKeyboardMarkup(
+        [
+            [KeyboardButton(_("admin_button")), KeyboardButton(_("owner_button"))],
+            [KeyboardButton(_("donate_button")), KeyboardButton(_("language_button"))],
+            [KeyboardButton(_("help_button"))],
+            [KeyboardButton(_("back_button"))],
+        ],
+        resize_keyboard=True,
+        placeholder=_("settings_placeholder"),
+    )
 
 
 LOGGER.info("Menu buttons module loaded successfully")

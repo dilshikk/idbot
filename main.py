@@ -1,11 +1,13 @@
 import logging
 import requests
 import threading
+from pyrogram import idle
 from bot import bot
 from database.db import init_db
 from utils import LOGGER
 from core.start import start
 from modules.usersync import sync_username_on_message, sync_username_on_callback
+from modules.menu import settings_menu, setup_bot_commands
 from modules.help import help_command
 from modules.my import my_command
 from modules.admin import admin_command
@@ -16,6 +18,7 @@ from modules.donate import donate_command
 from modules.fwd import handle_forwarded_message
 from modules.username import username_command
 from modules.callback import admin_button_handler, owner_button_handler
+# chatinfo ловит все личные сообщения, поэтому подключается последним
 from shared.chatinfo import handle_message
 from config import BOT_TOKEN, LOG_GROUP_ID
 
@@ -93,9 +96,17 @@ try:
 except Exception as e:
     LOGGER.exception("❌ Database initialization failed: %s", e)
 
-LOGGER.info("🚀 TG_iBot Started Successfully 💥")
+
+async def main():
+    await bot.start()
+    # Список команд в кнопке «Меню» Telegram обновляется при каждом запуске
+    await setup_bot_commands(bot)
+    LOGGER.info("🚀 TG_iBot Started Successfully 💥")
+    await idle()
+    await bot.stop()
+
 
 try:
-    bot.run()
+    bot.run(main())
 except Exception as e:
     LOGGER.exception("💥 Critical bot failure: %s", e)

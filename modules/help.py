@@ -1,10 +1,12 @@
 from pyrogram import Client, filters
+from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from utils import LOGGER
 from bot import bot
 from config import COMMAND_PREFIX
 from database import get_lang
 from utils.i18n import get_translator
+from modules.callback import _get_all_variants
 
 
 def get_help_keyboard(lang: str) -> InlineKeyboardMarkup:
@@ -46,13 +48,17 @@ def get_help_texts(_) -> dict:
     }
 
 
-@bot.on_message(filters.command("help", prefixes=COMMAND_PREFIX.split("|")))
+@bot.on_message(
+    filters.command("help", prefixes=COMMAND_PREFIX.split("|"))
+    | filters.text & filters.create(
+        lambda _, __, msg: msg.text and msg.text.strip() in _get_all_variants("help_button")
+    )
+)
 async def help_command(bot: Client, message):
     if not message.from_user:
         await message.delete()
         return
 
-    from pyrogram.enums import ChatType
     if message.chat.type != ChatType.PRIVATE:
         return  # пропускаем в группах
 
@@ -68,7 +74,6 @@ async def help_command(bot: Client, message):
         )
     except Exception as e:
         LOGGER.error(f"Error in /help: {e}", exc_info=True)
-
 
 
 @bot.on_callback_query(filters.regex(
