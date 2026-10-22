@@ -4,21 +4,16 @@ from miscs.adbtn import get_admin_buttons
 from miscs.mybtn import get_my_buttons
 from miscs.startbtn import get_menu_buttons
 from database import get_lang
-from utils.i18n import get_translator
+from utils.i18n import get_translator, button_variants
 from bot import bot
 
-ALL_LANG_KEYS = ["back_button", "admin_button", "owner_button"]
 
-
-def _get_all_variants(key: str) -> set:
-    """Собирает значения ключа из всех языков для фильтрации кнопок."""
-    from utils.i18n import load_translations
-    variants = set()
-    for lang in ("ru", "en", "uz"):
-        t = load_translations(lang)
-        if key in t:
-            variants.add(t[key])
-    return variants
+def button_filter(key: str):
+    """Фильтр «пользователь нажал кнопку key» на любом из языков."""
+    variants = button_variants(key)
+    return filters.text & filters.create(
+        lambda _, __, msg: bool(msg.text) and msg.text.strip() in variants
+    )
 
 
 def _chat_list_text(_) -> str:
@@ -32,20 +27,20 @@ def _chat_list_text(_) -> str:
 
 def _welcome_text(_) -> str:
     return (
-        f"{_('welcome_title')}\n\n"
-        f"{_('welcome_how_to')}\n"
+        f"**{_('welcome_title')}**\n\n"
+        f"**{_('welcome_how_to')}**\n"
         f"{_('welcome_step1')}\n"
         f"{_('welcome_step2')}\n\n"
-        f"{_('features_title')}\n"
+        f"**{_('features_title')}**\n"
         f"{_('features_list')}\n\n"
-        f"{_('fetch_cta')}"
+        f"**{_('fetch_cta')}**"
     )
 
 
-@bot.on_message(filters.text & filters.create(
-    lambda _, __, msg: msg.text and msg.text.strip() in _get_all_variants("admin_button")
-))
-async def admin_button_handler(bot: Client, message):
+# Кнопки нижней клавиатуры работают только в личке:
+# раньше любое сообщение «🔙 Назад» в группе вызывало ответ бота.
+@bot.on_message(filters.private & button_filter("admin_button"))
+async def admin_button_handler(client: Client, message):
     if not message.from_user:
         return
     user_id = message.from_user.id
@@ -54,10 +49,8 @@ async def admin_button_handler(bot: Client, message):
     await message.reply_text(_chat_list_text(_), reply_markup=get_admin_buttons(user_id))
 
 
-@bot.on_message(filters.text & filters.create(
-    lambda _, __, msg: msg.text and msg.text.strip() in _get_all_variants("owner_button")
-))
-async def owner_button_handler(bot: Client, message):
+@bot.on_message(filters.private & button_filter("owner_button"))
+async def owner_button_handler(client: Client, message):
     if not message.from_user:
         return
     user_id = message.from_user.id
@@ -66,10 +59,8 @@ async def owner_button_handler(bot: Client, message):
     await message.reply_text(_chat_list_text(_), reply_markup=get_my_buttons(user_id))
 
 
-@bot.on_message(filters.text & filters.create(
-    lambda _, __, msg: msg.text and msg.text.strip() in _get_all_variants("back_button")
-))
-async def back_button_handler(bot: Client, message):
+@bot.on_message(filters.private & button_filter("back_button"))
+async def back_button_handler(client: Client, message):
     if not message.from_user:
         return
     user_id = message.from_user.id

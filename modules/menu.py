@@ -6,7 +6,7 @@ from config import COMMAND_PREFIX
 from database import get_lang
 from utils.i18n import get_translator, LANGUAGES
 from miscs.startbtn import get_settings_buttons
-from modules.callback import _get_all_variants
+from modules.callback import button_filter
 
 # Команды в синей кнопке «Меню» Telegram (слева от поля ввода)
 BOT_COMMANDS = ("start", "help", "me", "language", "donate")
@@ -15,12 +15,7 @@ FALLBACK_LANG = "en"  # для пользователей с другими яз
 
 @bot.on_message(
     filters.private
-    & (
-        filters.command("settings", prefixes=COMMAND_PREFIX.split("|"))
-        | filters.text & filters.create(
-            lambda _, __, msg: msg.text and msg.text.strip() in _get_all_variants("settings_button")
-        )
-    )
+    & (filters.command("settings", prefixes=COMMAND_PREFIX.split("|")) | button_filter("settings_button"))
 )
 async def settings_menu(client: Client, message):
     if not message.from_user:

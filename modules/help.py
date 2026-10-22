@@ -1,12 +1,16 @@
 from pyrogram import Client, filters
-from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from utils import LOGGER
 from bot import bot
 from config import COMMAND_PREFIX
 from database import get_lang
 from utils.i18n import get_translator
-from modules.callback import _get_all_variants
+from modules.callback import button_filter
+
+HELP_SECTIONS = (
+    "help_forward", "help_getme", "help_sharedchat",
+    "help_admins", "help_ownchats", "help_username",
+)
 
 
 def get_help_keyboard(lang: str) -> InlineKeyboardMarkup:
@@ -36,77 +40,47 @@ def get_back_button(lang: str) -> InlineKeyboardMarkup:
     ]])
 
 
-def get_help_texts(_) -> dict:
-    return {
-        "main":          _("help_main"),
-        "help_forward":  _("help_forward"),
-        "help_getme":    _("help_getme"),
-        "help_sharedchat": _("help_sharedchat"),
-        "help_admins":   _("help_admins"),
-        "help_ownchats": _("help_ownchats"),
-        "help_username": _("help_username"),
-    }
-
-
 @bot.on_message(
-    filters.command("help", prefixes=COMMAND_PREFIX.split("|"))
-    | filters.text & filters.create(
-        lambda _, __, msg: msg.text and msg.text.strip() in _get_all_variants("help_button")
-    )
+    filters.private
+    & (filters.command("help", prefixes=COMMAND_PREFIX.split("|")) | button_filter("help_button"))
 )
-async def help_command(bot: Client, message):
+async def help_command(client: Client, message):
     if not message.from_user:
-        await message.delete()
         return
-
-    if message.chat.type != ChatType.PRIVATE:
-        return  # пропускаем в группах
 
     user_id = message.from_user.id
     lang = get_lang(user_id)
     _ = get_translator(lang)
-
     LOGGER.info(f"/help called by {user_id} (lang={lang})")
     try:
-        await message.reply_text(
-            get_help_texts(_)["main"],
-            reply_markup=get_help_keyboard(lang),
-        )
+        await message.reply_text(_("help_main"), reply_markup=get_help_keyboard(lang))
     except Exception as e:
         LOGGER.error(f"Error in /help: {e}", exc_info=True)
 
 
-@bot.on_callback_query(filters.regex(
-    r"^(help_forward|help_getme|help_sharedchat|help_admins|help_ownchats|help_username|help_close|main_menu)$"
-))
-async def handle_help_callback(bot: Client, callback_query):
-    if not callback_query.from_user:
+@bot.on_callback_query(filters.regex(rf"^({'|'.join(HELP_SECTIONS)}|help_close|main_menu)$"))
+async def handle_help_callback(client: Client, callback_query):
+    if not callback_query.from_user or not callback_query.message:
         return
 
     user_id = callback_query.from_user.id
     lang = get_lang(user_id)
     _ = get_translator(lang)
-    texts = get_help_texts(_)
-
     data = callback_query.data
     LOGGER.info(f"[HELP] data={data}, user={user_id}")
 
     try:
         if data == "help_close":
             await callback_query.message.delete()
-            return
-
-        if data == "main_menu":
-            await callback_query.message.edit_text(
-                texts["main"],
-                reply_markup=get_help_keyboard(lang),
-            )
-            return
-
-        await callback_query.message.edit_text(
-            texts.get(data, _("help_coming_soon")),
-            reply_markup=get_back_button(lang),
-        )
-
+        elif data == "main_menu":
+            await callback_query.message.edit_text(_("help_main"), reply_markup=get_help_keyboard(lang))
+        else:
+            await callback_query.message.edit_text(_(data), reply_markup=get_back_button(lang))
     except Exception as e:
         LOGGER.error(f"Error in help callback: {e}", exc_info=True)
+    finally:
+        # Без ответа у пользователя бесконечно крутятся «часики» на кнопке
+        try:
+            await callback_query.answer()
+        except Exception:
+            pass
