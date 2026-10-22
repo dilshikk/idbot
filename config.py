@@ -43,7 +43,8 @@ BOT_TOKEN = _required("BOT_TOKEN")
 # Один или несколько ID через запятую: ADMIN_ID=123,456
 ADMIN_ID = _int_list(_required("ADMIN_ID"))
 
-LOG_GROUP_ID = int(os.environ.get("LOG_GROUP_ID", "0") or 0)
+# Обязательна: сюда бот пишет о новых пользователях и ошибках
+LOG_GROUP_ID = int(_required("LOG_GROUP_ID"))
 COMMAND_PREFIX = os.environ.get("COMMAND_PREFIX", "#|.|/|!|,")
 
 # Сколько обработчиков работают одновременно. 1000 было слишком много.
