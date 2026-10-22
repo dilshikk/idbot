@@ -1,9 +1,9 @@
 welcome_title: "👋 Welcome to TG iBot! 🆔"
 welcome_how_to: "🔧 How to Use?"
-welcome_step1: "1⃣ Click the buttons below to share a chat."
-welcome_step2: "2⃣ Receive the unique ID instantly."
-features_title: "💎 Features:"
-features_list: "- Users, bots, groups and channels\n- Fast and reliable"
+welcome_step1: "1⃣ Tap a button below: 👤 User, 🤖 Bot, 👥 Group or 📢 Channel."
+welcome_step2: "2⃣ Pick a chat and get its ID instantly."
+features_title: "💎 You can also:"
+features_list: "- Forward me any message\n- Send me a @username\n- Find the rest in ⚙️ Settings and the «Menu» button"
 fetch_cta: "✅ Fetch Any Chat ID Instantly!"
 language_set: "✅ Language has been set successfully!"
 invalid_language: "❌ Invalid language!"
@@ -81,16 +81,16 @@ help_sharedchat: |
   🔎 Need the ID of a user, group, or channel? Share it with me!
 
   1️⃣ Type `/start` to see the sharing buttons.
-  2️⃣ Pick a user, bot, group, or channel to share.
+  2️⃣ Tap 👤 User, 🤖 Bot, 👥 Group or 📢 Channel and pick a chat.
   3️⃣ I'll fetch the ID, name, and username instantly! ⚡
 
-  💡 **Pro Tip:** Works for public and private chats, plus bots and premium users! 😎
+  💡 **Pro Tip:** Works for public and private chats! 😎
 help_admins: |
   **Admins Tutorial 🛡️**
 
   🔍 Want to see where you're an admin? I've got you!
 
-  1️⃣ Type `/admin` in the chat with me.
+  1️⃣ Open ⚙️ Settings → 👑 Admins Chat (or type `/admin`).
   2️⃣ Use the buttons to share a channel or group where you have admin rights.
   3️⃣ I'll reveal the ID and details instantly! ⚡
 
@@ -100,7 +100,7 @@ help_ownchats: |
 
   🔎 Curious about your own channels or groups? Let's find them!
 
-  1️⃣ Type `/my` in the chat with me.
+  1️⃣ Open ⚙️ Settings → 📚 Owner Chat (or type `/my`).
   2️⃣ Use the buttons to share a channel or group you own.
   3️⃣ I'll send the ID and details in a snap! ⚡
 
@@ -172,12 +172,17 @@ admin_placeholder: "Choose a admin chat type"
 my_btn_channel: "📢 Your Channel"
 my_btn_group: "👥 Your Group"
 my_placeholder: "Choose a own chat type"
-menu_btn_user_info: "👤 User Info"
-menu_btn_public_group: "👥 Public Group"
-menu_btn_private_group: "🔒 Private Group"
-menu_btn_public_channel: "📢 Public Channel"
-menu_btn_private_channel: "🔒 Private Channel"
+menu_btn_user: "👤 User"
 menu_btn_bot: "🤖 Bot"
-menu_btn_premium: "🌟 Premium Users"
-menu_placeholder: "Choose a chat type"
-
+menu_btn_group: "👥 Group"
+menu_btn_channel: "📢 Channel"
+menu_placeholder: "Whose ID do you need?"
+settings_button: "⚙️ Settings"
+settings_title: "**⚙️ Settings**\n\n👑 Chats where you are admin\n📚 Chats you created\n💰 Support the project\n🌍 Change language\n❓ How to use the bot"
+settings_placeholder: "Choose an option"
+help_button: "❓ Help"
+cmd_start: "Main menu"
+cmd_help: "How to use the bot"
+cmd_me: "My ID and profile"
+cmd_language: "Change language"
+cmd_donate: "Support the project"

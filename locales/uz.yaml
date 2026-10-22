@@ -1,9 +1,9 @@
 welcome_title: "👋 TG iBot'ga xush kelibsiz! 🆔"
 welcome_how_to: "🔧 Qanday foydalanish kerak?"
-welcome_step1: "1⃣ Chat ulashish uchun quyidagi tugmalarni bosing."
-welcome_step2: "2⃣ Noyob ID'ni darhol oling."
-features_title: "💎 Imkoniyatlar:"
-features_list: "- Foydalanuvchilar, botlar, guruhlar va kanallar\n- Tez va ishonchli"
+welcome_step1: "1⃣ Quyidagi tugmani bosing: 👤 Foydalanuvchi, 🤖 Bot, 👥 Guruh yoki 📢 Kanal."
+welcome_step2: "2⃣ Chatni tanlang va uning ID'sini darhol oling."
+features_title: "💎 Yana mumkin:"
+features_list: "- Menga istalgan xabarni yo'naltiring\n- @username yuboring\n- Qolganlari ⚙️ Sozlamalar va «Menyu» tugmasida"
 fetch_cta: "✅ Istalgan Chat ID'ni darhol oling!"
 language_set: "✅ Til muvaffaqiyatli o'rnatildi!"
 invalid_language: "❌ Noto'g'ri til!"
@@ -81,16 +81,16 @@ help_sharedchat: |
   🔎 Foydalanuvchi, guruh yoki kanal ID'si kerakmi? Menga ulashing!
 
   1️⃣ Tugmalarni ko'rish uchun `/start` yozing.
-  2️⃣ Foydalanuvchi, bot, guruh yoki kanalni tanlang.
+  2️⃣ 👤 Foydalanuvchi, 🤖 Bot, 👥 Guruh yoki 📢 Kanal tugmasini bosib, chatni tanlang.
   3️⃣ Men ID, ism va username'ni darhol olaman! ⚡
 
-  💡 **Maslahat:** Ochiq va yopiq chatlar, botlar va premium foydalanuvchilar uchun ishlaydi! 😎
+  💡 **Maslahat:** Ochiq va yopiq chatlar uchun ishlaydi! 😎
 help_admins: |
   **Admin chatlar bo'yicha qo'llanma 🛡️**
 
   🔍 Qayerlarda admin ekanligingizni bilmoqchimisiz?
 
-  1️⃣ Men bilan chatda `/admin` yozing.
+  1️⃣ ⚙️ Sozlamalar → 👑 Admin chatlarim ni oching (yoki `/admin` yozing).
   2️⃣ Admin huquqlaringiz bor kanal yoki guruhni ulashish uchun tugmalardan foydalaning.
   3️⃣ Men ID va tafsilotlarni darhol ko'rsataman! ⚡
 
@@ -100,7 +100,7 @@ help_ownchats: |
 
   🔎 O'z kanallaringiz yoki guruhlaringiz haqida bilmoqchimisiz?
 
-  1️⃣ Men bilan chatda `/my` yozing.
+  1️⃣ ⚙️ Sozlamalar → 📚 Yaratgan chatlarim ni oching (yoki `/my` yozing).
   2️⃣ O'z kanal yoki guruhingizni ulashish uchun tugmalardan foydalaning.
   3️⃣ Men ID va tafsilotlarni bir zumda yuboraman! ⚡
 
@@ -172,12 +172,17 @@ admin_placeholder: "Admin chat turini tanlang"
 my_btn_channel: "📢 Kanalingiz"
 my_btn_group: "👥 Guruhingiz"
 my_placeholder: "O'z chat turingizni tanlang"
-menu_btn_user_info: "👤 Foydalanuvchi ma'lumotlari"
-menu_btn_public_group: "👥 Ochiq guruh"
-menu_btn_private_group: "🔒 Yopiq guruh"
-menu_btn_public_channel: "📢 Ochiq kanal"
-menu_btn_private_channel: "🔒 Yopiq kanal"
+menu_btn_user: "👤 Foydalanuvchi"
 menu_btn_bot: "🤖 Bot"
-menu_btn_premium: "🌟 Premium foydalanuvchilar"
-menu_placeholder: "Chat turini tanlang"
-
+menu_btn_group: "👥 Guruh"
+menu_btn_channel: "📢 Kanal"
+menu_placeholder: "Kimning ID'si kerak?"
+settings_button: "⚙️ Sozlamalar"
+settings_title: "**⚙️ Sozlamalar**\n\n👑 Siz admin bo'lgan chatlar\n📚 Siz yaratgan chatlar\n💰 Loyihani qo'llab-quvvatlash\n🌍 Tilni o'zgartirish\n❓ Botdan qanday foydalanish"
+settings_placeholder: "Bo'limni tanlang"
+help_button: "❓ Yordam"
+cmd_start: "Asosiy menyu"
+cmd_help: "Botdan qanday foydalanish"
+cmd_me: "Mening ID va profilim"
+cmd_language: "Tilni o'zgartirish"
+cmd_donate: "Loyihani qo'llab-quvvatlash"
