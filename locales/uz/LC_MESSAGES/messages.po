@@ -1,0 +1,754 @@
+# Uzbek translations for TG iBot.
+# Copyright (C) 2026 TG iBot
+# This file is distributed under the same license as the TG iBot project.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TG iBot\n"
+"POT-Creation-Date: 2026-07-08 05:04+0500\n"
+"PO-Revision-Date: 2026-07-08 05:04+0500\n"
+"Language: uz\n"
+"Language-Team: uz\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: core/start.py:87
+msgid "✅ Language has been set successfully!"
+msgstr "✅ Til muvaffaqiyatli o'rnatildi!"
+
+#: miscs/adbtn.py:48
+msgid "📢 Channels"
+msgstr "📢 Kanallar"
+
+#: miscs/adbtn.py:56
+msgid "👥 Groups"
+msgstr "👥 Guruhlar"
+
+#: miscs/adbtn.py:64 miscs/mybtn.py:36 modules/donate.py:93
+msgid "🔙 Back"
+msgstr "🔙 Orqaga"
+
+#: miscs/adbtn.py:67
+msgid "Choose a admin chat type"
+msgstr "Admin chat turini tanlang"
+
+#: miscs/mybtn.py:28
+msgid "📢 Your Channel"
+msgstr "📢 Sizning kanallaringiz"
+
+#: miscs/mybtn.py:32
+msgid "👥 Your Group"
+msgstr "👥 Sizning guruhlaringiz"
+
+#: miscs/mybtn.py:39
+msgid "Choose a own chat type"
+msgstr "O'z chat turini tanlang"
+
+#: miscs/startbtn.py:28
+msgid "👤 User Info"
+msgstr "👤 Foydalanuvchi haqida"
+
+#: miscs/startbtn.py:34
+msgid "👥 Public Group"
+msgstr "👥 Ommaviy guruhlar"
+
+#: miscs/startbtn.py:38
+msgid "🔒 Private Group"
+msgstr "🔒 Xususiy guruhlar"
+
+#: miscs/startbtn.py:44
+msgid "📢 Public Channel"
+msgstr "📢 Ommaviy kanallar"
+
+#: miscs/startbtn.py:48
+msgid "🔒 Private Channel"
+msgstr "🔒 Xususiy kanallar"
+
+#: miscs/startbtn.py:54
+msgid "🤖 Bot"
+msgstr "🤖 Botlar"
+
+#: miscs/startbtn.py:58
+msgid "🌟 Premium Users"
+msgstr "🌟 Premium foydalanuvchilar"
+
+#: miscs/startbtn.py:63
+msgid "👑 Admins Chat"
+msgstr "👑 Admin chatlarim"
+
+#: miscs/startbtn.py:64
+msgid "📚 Owner Chat"
+msgstr "📚 Yaratgan chatlarim"
+
+#: miscs/startbtn.py:67
+msgid "💰 Donate"
+msgstr "💰 Xayriya"
+
+#: miscs/startbtn.py:68
+msgid "🌍 Language"
+msgstr "🌍 Til"
+
+#: miscs/startbtn.py:72
+msgid "Choose a chat type"
+msgstr "Chat turini tanlang"
+
+#: modules/admin.py:27 modules/my.py:27
+msgid "⚠️ This command can only be used in private chat."
+msgstr "⚠️ Ushbu buyruq faqat shaxsiy chatda ishlatiladi."
+
+#: modules/admin.py:29 modules/my.py:30
+msgid "💬 Open chat with bot"
+msgstr "💬 Bot bilan chatni ochish"
+
+#: modules/donate.py:76 modules/donate.py:142
+#, python-brace-format
+msgid ""
+"Generating invoice for {amount} Stars...\n"
+"Please wait ⏳"
+msgstr ""
+"{amount} yulduz uchun hisob yaratilmoqda...\n"
+"Iltimos, kuting ⏳"
+
+#: modules/donate.py:80
+msgid "**❌ Invalid Input! Use a positive number.**"
+msgstr "**❌ Noto'g'ri qiymat! Musbat son kiriting.**"
+
+#: modules/donate.py:84 modules/donate.py:174
+msgid "❌ Donation System Error"
+msgstr "❌ Xayriya tizimida xato yuz berdi"
+
+#: modules/donate.py:90
+msgid "**🚫 Wait! Contribution Already in Progress!**"
+msgstr "**🚫 To'xtang! Xayriya jarayoni allaqachon davom etmoqda!**"
+
+#: modules/donate.py:98
+#, python-brace-format
+msgid "⭐️ {amount} Stars"
+msgstr "⭐️ {amount} yulduz"
+
+#: modules/donate.py:99
+msgid "💫 Donate Via Stars"
+msgstr "💫 Yulduzlar orqali xayriya qilish"
+
+#: modules/donate.py:103
+msgid "Support TG iBot"
+msgstr "TG iBot'ni qo'llab-quvvatlash"
+
+#: modules/donate.py:104
+#, python-brace-format
+msgid "Contribute {amount} Stars to support development 💫"
+msgstr "{amount} yulduz bilan rivojlanishni qo'llab-quvvatlang 💫"
+
+#: modules/donate.py:114
+#, python-brace-format
+msgid "**✅ Invoice for {amount} Stars generated!**"
+msgstr "**✅ {amount} yulduz uchun hisob yaratildi!**"
+
+#: modules/donate.py:122
+msgid "**❌ Invoice Creation Failed! Try Again!**"
+msgstr "**❌ Hisob yaratib bo'lmadi! Qayta urinib ko'ring!**"
+
+#: modules/donate.py:144
+msgid "✅ Invoice Generated! Donate Now! ⭐️"
+msgstr "✅ Hisob tayyor! Endi xayriya qiling! ⭐️"
+
+#: modules/donate.py:150 modules/donate.py:156
+#, python-brace-format
+msgid "Updated to {amount} Stars"
+msgstr "{amount} yulduzga yangilandi"
+
+#: modules/donate.py:188
+msgid "Failed to process pre-checkout."
+msgstr "Oldindan to'lovni qayta ishlashda xato yuz berdi."
+
+#: modules/donate.py:222
+msgid "📋 Copy Transaction ID"
+msgstr "📋 Tranzaksiya ID'ni nusxalash"
+
+#: modules/donate.py:253
+msgid "**❌ Payment Declined! Contact Support!**"
+msgstr "**❌ To'lov rad etildi! Yordam xizmatiga murojaat qiling!**"
+
+#: modules/donate.py:256
+msgid "📞 Contact Support"
+msgstr "📞 Yordam xizmatiga murojaat qilish"
+
+#: modules/fwd.py:20 modules/info.py:40 modules/me.py:22 modules/username.py:22
+msgid "Processing Info..."
+msgstr "Ma'lumotlar qayta ishlanmoqda..."
+
+#: modules/fwd.py:40 modules/helpers.py:30
+msgid "Unknown"
+msgstr "Noma'lum"
+
+#: modules/fwd.py:72 modules/info.py:51 modules/info.py:81 modules/me.py:51
+#: modules/username.py:61
+msgid "**Looks Like I Don't Have Control Over The User**"
+msgstr "**Aftidan, men ushbu foydalanuvchi ustidan nazoratga ega emasman**"
+
+#: modules/help.py:14
+msgid "📬 Forward"
+msgstr "📬 Xabarni yuborish"
+
+#: modules/help.py:15
+msgid "🙋‍♂️ Get Me"
+msgstr "🙋‍♂️ Mening ID'm"
+
+#: modules/help.py:18
+msgid "🌐 Shared Chat"
+msgstr "🌐 Ulashilgan chat"
+
+#: modules/help.py:19
+msgid "🛡️ Admins"
+msgstr "🛡️ Administratorlar"
+
+#: modules/help.py:22
+msgid "📚 Own Chats"
+msgstr "📚 O'z chatlaringiz"
+
+#: modules/help.py:23
+msgid "👤 Username"
+msgstr "👤 Foydalanuvchi nomi"
+
+#: modules/help.py:25
+msgid "❌ Close"
+msgstr "❌ Yopish"
+
+#: modules/help.py:26
+msgid "🔔 Join For Updates"
+msgstr "🔔 Yangiliklardan xabardor bo'lish uchun qo'shiling"
+
+#: modules/help.py:38
+msgid ""
+"**Here Are TG iBot Options 👇:**\n"
+"\n"
+msgstr ""
+"**Quyida TG iBot menyusi 👇:**\n"
+"\n"
+
+#: modules/help.py:40
+msgid ""
+"**Forward Message Tutorial 📬**\n"
+"\n"
+"🔎 Want to grab the ID of a user or chat? Just forward a message to me! "
+"Here's how:\n"
+"\n"
+"1️⃣ Find a message in any chat (user, group, channel, or bot).\n"
+"2️⃣ Forward it to me privately.\n"
+"3️⃣ I'll instantly reveal the ID, name, and more! ⚡\n"
+"\n"
+"💡 **Pro Tip:** Works with any forwarded message, even from private chats! 😎"
+msgstr ""
+"**Xabarni yuborish bo'yicha qo'llanma 📬**\n"
+"\n"
+"🔎 Foydalanuvchi yoki chat ID'sini bilmoqchimisiz? Xabarni menga yuboring! Quyidagicha:\n"
+"\n"
+"1️⃣ Istalgan chatdan (foydalanuvchi, guruh, kanal yoki bot) xabarni tanlang.\n"
+"2️⃣ Uni menga shaxsiy chatda yuboring.\n"
+"3️⃣ Men darhol ID, ism va boshqa ma'lumotlarni ko'rsataman! ⚡\n"
+"\n"
+"💡 **Maslahat:** Hatto xususiy chatlardan yuborilgan xabarlarda ham ishlaydi! 😎"
+
+#: modules/help.py:48
+msgid ""
+"**Get Me Tutorial 🙋‍♂️**\n"
+"\n"
+"🔍 Want to know your own Telegram ID? It's super easy!\n"
+"\n"
+"1️⃣ Just type `/me` in the chat with me.\n"
+"2️⃣ I'll send your user ID, name, and username instantly! ⚡\n"
+"3️⃣ If you have a profile photo, I'll show it too! 📸\n"
+"\n"
+"💡 **Pro Tip:** Use the button in the reply to copy your ID! 😎"
+msgstr ""
+"**Mening ID'm qo'llanmasi 🙋‍♂️**\n"
+"\n"
+"🔍 O'zingizning Telegram ID'nizni bilmoqchimisiz? Juda oson!\n"
+"\n"
+"1️⃣ Chatda `/me` deb yozing.\n"
+"2️⃣ Men sizning foydalanuvchi ID, ism va username'ni darhol yuboraman! ⚡\n"
+"3️⃣ Profil rasmingiz bo'lsa, uni ham ko'rsataman! 📸\n"
+"\n"
+"💡 **Maslahat:** ID'ni nusxalash uchun javobdagi tugmadan foydalaning! 😎"
+
+#: modules/help.py:56
+msgid ""
+"**Shared Chat Tutorial 🌐**\n"
+"\n"
+"🔎 Need the ID of a user, group, or channel? Share it with me!\n"
+"\n"
+"1️⃣ Type `/start` to see the sharing buttons.\n"
+"2️⃣ Pick a user, bot, group, or channel to share.\n"
+"3️⃣ I'll fetch the ID, name, and username instantly! ⚡\n"
+"\n"
+"💡 **Pro Tip:** Works for public and private chats, plus bots and premium users! 😎"
+msgstr ""
+"**Ulashilgan chat qo'llanmasi 🌐**\n"
+"\n"
+"🔎 Foydalanuvchi, guruh yoki kanal ID'si kerakmi? Uni menga ulashing!\n"
+"\n"
+"1️⃣ `/start` ni yozing va ulashish tugmalarini oching.\n"
+"2️⃣ Foydalanuvchi, bot, guruh yoki kanalni tanlang.\n"
+"3️⃣ Men darhol ID, ism va username'ni ko'rsataman! ⚡\n"
+"\n"
+"💡 **Maslahat:** Ommaviy va xususiy chatlar, botlar hamda premium foydalanuvchilar uchun ishlaydi! 😎"
+
+#: modules/help.py:64
+msgid ""
+"**Admins Tutorial 🛡️**\n"
+"\n"
+"🔍 Want to see where you're an admin? I've got you!\n"
+"\n"
+"1️⃣ Type `/admin` in the chat with me.\n"
+"2️⃣ Use the buttons to share a channel or group where you have admin rights.\n"
+"3️⃣ I'll reveal the ID and details instantly! ⚡\n"
+"\n"
+"💡 **Pro Tip:** Perfect for managing your admin roles! 😎"
+msgstr ""
+"**Administrator qo'llanmasi 🛡️**\n"
+"\n"
+"🔍 Qaysi joylarda admin ekansiz – bilmoqchimisiz?\n"
+"\n"
+"1️⃣ Chatda `/admin` yozing.\n"
+"2️⃣ Siz admin bo'lgan guruh yoki kanalni tanlang.\n"
+"3️⃣ Men darhol ID va boshqa ma'lumotlarni ko'rsataman! ⚡\n"
+"\n"
+"💡 **Maslahat:** Adminlik faoliyatingizni boshqarish uchun juda qulay! 😎"
+
+#: modules/help.py:72
+msgid ""
+"**Own Chats Tutorial 📚**\n"
+"\n"
+"🔎 Curious about your own channels or groups? Let's find them!\n"
+"\n"
+"1️⃣ Type `/my` in the chat with me.\n"
+"2️⃣ Use the buttons to share a channel or group you own.\n"
+"3️⃣ I'll send the ID and details in a snap! ⚡\n"
+"\n"
+"💡 **Pro Tip:** Great for keeping track of your own chats! 😎"
+msgstr ""
+"**O'z chatlaringiz qo'llanmasi 📚**\n"
+"\n"
+"🔎 O'zingizga tegishli guruh yoki kanallarni bilmoqchimisiz?\n"
+"\n"
+"1️⃣ Chatda `/my` deb yozing.\n"
+"2️⃣ O'zingizga tegishli kanal yoki guruhni tanlang.\n"
+"3️⃣ Men ID va tafsilotlarni darhol yuboraman! ⚡\n"
+"\n"
+"💡 **Maslahat:** O'zingizning chatlaringizni kuzatib borish uchun juda foydali! 😎"
+
+#: modules/help.py:80
+msgid ""
+"**Username Tutorial 👤**\n"
+"\n"
+"🔎 Want info about a specific user? Just send me their username!\n"
+"\n"
+"1️⃣ Type a username (e.g., `@username`) in the chat with me.\n"
+"2️⃣ I'll fetch their ID, name, and other details instantly! ⚡\n"
+"3️⃣ If they have a profile photo, I'll show it too! 📸\n"
+"\n"
+"💡 **Pro Tip:** Works for any public username, even bots! 😎"
+msgstr ""
+"**Foydalanuvchi nomi qo'llanmasi 👤**\n"
+"\n"
+"🔎 Ma'lum bir foydalanuvchi haqida bilmoqchimisiz? Uning username'ni menga yuboring!\n"
+"\n"
+"1️⃣ Chatga username yozing (masalan, `@username`).\n"
+"2️⃣ Men darhol uning ID, ism va boshqa ma'lumotlarini ko'rsataman! ⚡\n"
+"3️⃣ Agar foydalanuvchida profil rasmi bo'lsa, uni ham ko'rsataman! 📸\n"
+"\n"
+"💡 **Maslahat:** Har qanday ommaviy username, hatto botlar uchun ham ishlaydi! 😎"
+
+#: modules/help.py:138
+msgid "Instructions will appear here soon 😎"
+msgstr "Yo'riqnomalar tez orada bu yerda paydo bo'ladi 😎"
+
+#: modules/helpers.py:80
+msgid "Bot's Profile Info"
+msgstr "Bot profil ma'lumoti"
+
+#: modules/helpers.py:80
+msgid "User's Profile Info"
+msgstr "Foydalanuvchi ma'lumoti"
+
+#: modules/helpers.py:98 modules/helpers.py:111
+msgid "Yes"
+msgstr "Ha"
+
+#: modules/helpers.py:98 modules/helpers.py:111
+msgid "No"
+msgstr "Yo'q"
+
+#: modules/helpers.py:142 shared/chatinfo.py:35
+msgid "Unnamed Chat"
+msgstr "Nomsiz chat"
+
+#: modules/language.py:36
+msgid "🌍 Choose your language:"
+msgstr "🌍 Tilni tanlang:"
+
+#: shared/chatinfo.py:37 shared/chatinfo.py:58
+msgid "No username"
+msgstr "Foydalanuvchi nomi yo'q"
+
+#: shared/chatinfo.py:59
+msgid "Bot"
+msgstr "Bot"
+
+#: shared/chatinfo.py:59
+msgid "User"
+msgstr "Foydalanuvchi"
+
+#~ msgid "Welcome to TG iBot!"
+#~ msgstr "TG iBot’ga xush kelibsiz!"
+
+#~ msgid "Fetch Any Chat ID Instantly!"
+#~ msgstr "Har qanday chat ID’ni bir zumda oling!"
+
+#~ msgid "How to Use?"
+#~ msgstr "Qanday foydalaniladi?"
+
+#~ msgid "Click the buttons below to share a chat or user."
+#~ msgstr "Quyidagi tugmalarni bosib, chat yoki foydalanuvchini yuboring."
+
+#~ msgid "Receive the unique ID instantly."
+#~ msgstr "Darhol yagona ID oling."
+
+#~ msgid "Features:"
+#~ msgstr "Xususiyatlar:"
+
+#~ msgid ""
+#~ "- Supports users, bots, private/public groups & channels\n"
+#~ "- Fast and reliable"
+#~ msgstr ""
+#~ "- Foydalanuvchilar, botlar, xususiy va "
+#~ "ommaviy guruhlar hamda kanallarni qo‘llab-"
+#~ "quvvatlaydi\n"
+#~ "- Tez va ishonchli"
+
+#~ msgid "**Why support TG iBot?**"
+#~ msgstr "**Nega TG iBot’ni qo‘llab-quvvatlash kerak?**"
+
+#~ msgid "🌟 **Love the service?**"
+#~ msgstr "🌟 **Xizmat sizga yoqdimi?**"
+
+#~ msgid ""
+#~ "Your support helps keep **Quick Info "
+#~ "Bot** fast, reliable, and free for "
+#~ "everyone. Even a small **Gift or "
+#~ "Donation** makes a big difference! 💖"
+#~ msgstr ""
+#~ "Sizning yordamingiz **TG iBot**’ni "
+#~ "barcha foydalanuvchilar uchun tez, ishonchli"
+#~ " va bepul bo‘lib qolishiga yordam "
+#~ "beradi. Hatto kichik bir **sovg‘a yoki"
+#~ " xayriya** ham katta ahamiyatga ega! "
+#~ "💖"
+
+#~ msgid "👇 **Choose an amount to contribute:**"
+#~ msgstr "👇 **Xayriya miqdorini tanlang:**"
+
+#~ msgid "**Why contribute?**"
+#~ msgstr "**Nega xayriya qilish kerak?**"
+
+#~ msgid ""
+#~ "More support = more motivation\n"
+#~ "More motivation = better tools\n"
+#~ "Better tools = more productivity\n"
+#~ "More productivity = less wasted time\n"
+#~ "Less wasted time = more done with **TG iBot** 💡\n"
+#~ "**More Muhahaha… 🤓🔥**"
+#~ msgstr ""
+#~ "Ko‘proq qo‘llab-quvvatlash = ko‘proq motivatsiya\n"
+#~ "Ko‘proq motivatsiya = yaxshiroq vositalar\n"
+#~ "Yaxshiroq vositalar = yuqori samaradorlik\n"
+#~ "Yuqori samaradorlik = kamroq vaqt yo‘qotish\n"
+#~ "Kamroq vaqt yo‘qotish = **TG iBot** bilan ko‘proq natija 💡\n"
+#~ "**Yana ko‘proq Muhahaha… 🤓🔥**"
+
+#~ msgid "**✅ Donation Successful!**"
+#~ msgstr "**✅ Xayriya muvaffaqiyatli amalga oshirildi!**"
+
+#~ msgid ""
+#~ "🎉 Huge thanks {name} for donating "
+#~ "{amount} ⭐️ to support **Quick Info "
+#~ "Bot!**\n"
+#~ "Your contribution helps keep everything running smooth and awesome 🚀"
+#~ msgstr ""
+#~ "🎉 {name}, **TG iBot**’ni qo"
+#~ "‘llab-quvvatlaganingiz uchun {amount} ⭐️ "
+#~ "xayriyangiz uchun katta rahmat!\n"
+#~ "Sizning hissangiz botning barqaror va a’lo ishlashiga yordam beradi 🚀"
+
+#~ msgid "**🧾 Transaction ID:** `{id}`"
+#~ msgstr "**🧾 Tranzaksiya ID:** `{id}`"
+
+#~ msgid "**Hey New Donation Received 🤗**"
+#~ msgstr "**Yangi xayriya qabul qilindi 🤗**"
+
+#~ msgid ""
+#~ "**━━━━━━━━━━━━━━━**\n"
+#~ "**From:** {name}\n"
+#~ "**Username:** {username}\n"
+#~ "**UserID:** `{user_id}`\n"
+#~ "**Amount:** {amount} ⭐️\n"
+#~ "**Transaction ID:** `{txn}`\n"
+#~ "**━━━━━━━━━━━━━━━**\n"
+#~ "**Click Below Button If Need Refund 💸**"
+#~ msgstr ""
+#~ "**━━━━━━━━━━━━━━━**\n"
+#~ "**Kimdan:** {name}\n"
+#~ "**Foydalanuvchi nomi:** {username}\n"
+#~ "**Foydalanuvchi ID:** `{user_id}`\n"
+#~ "**Miqdor:** {amount} ⭐️\n"
+#~ "**Tranzaksiya ID:** `{txn}`\n"
+#~ "**━━━━━━━━━━━━━━━**\n"
+#~ "**Agar qaytarish kerak bo‘lsa, quyidagi tugmani bosing 💸**"
+
+#~ msgid ""
+#~ "**✅ Invoice for {amount} Stars has "
+#~ "been generated! You can now proceed "
+#~ "to pay via the button below.**"
+#~ msgstr ""
+#~ "**✅ {amount} yulduz uchun hisob tayyor!"
+#~ " Endi quyidagi tugma orqali to‘lovni "
+#~ "amalga oshirishingiz mumkin.**"
+
+#~ msgid ""
+#~ "**✅ Refund Successfully Completed!**\n"
+#~ "\n"
+#~ "**{amount} Stars** have been refunded to"
+#~ " **[{name}](tg://user?id={user_id})**"
+#~ msgstr ""
+#~ "**✅ Qaytarish muvaffaqiyatli yakunlandi!**\n"
+#~ "\n"
+#~ "**{amount} yulduz** qaytarildi: **[{name}](tg://user?id={user_id})**"
+
+#~ msgid ""
+#~ "**❌ Refund Failed!**\n"
+#~ "\n"
+#~ "Failed to refund **{amount} Stars** to **{name}** (ID: `{user_id}`)\n"
+#~ "Error: {error}"
+#~ msgstr ""
+#~ "**❌ Qaytarish amalga oshmadi!**\n"
+#~ "\n"
+#~ "**{amount} yulduz** foydalanuvchiga (**{name}**, "
+#~ "ID: `{user_id}`) qaytarilmadi\n"
+#~ "Xato: {error}"
+
+#~ msgid "❌ You don't have permission to refund!"
+#~ msgstr "❌ Sizda qaytarish uchun ruxsat yo‘q!"
+
+#~ msgid "❌ Payment data not found!"
+#~ msgstr "❌ To‘lov ma’lumotlari topilmadi!"
+
+#~ msgid "✅ Refund processed successfully!"
+#~ msgstr "✅ Qaytarish muvaffaqiyatli amalga oshirildi!"
+
+#~ msgid ""
+#~ "Contribute {amount} Stars to support "
+#~ "ongoing development and keep the tools"
+#~ " free, fast, and reliable for "
+#~ "everyone 💫 Every star helps us "
+#~ "grow!"
+#~ msgstr ""
+#~ "Doimiy rivojlanishni qo‘llab-quvvatlash va "
+#~ "vositalarni hamma uchun bepul, tez va"
+#~ " ishonchli saqlash uchun {amount} yulduz"
+#~ " xayriya qiling 💫 Har bir yulduz "
+#~ "bizga o‘sishda yordam beradi!"
+
+#~ msgid "✅ Payment Approved"
+#~ msgstr "✅ To‘lov tasdiqlandi"
+
+#~ msgid "Refund {amount} ⭐️"
+#~ msgstr "{amount} ⭐️ qaytarish"
+
+#~ msgid "Oops! Could not close the menu 😅"
+#~ msgstr "Oops! Menyuni yopib bo‘lmadi 😅"
+
+#~ msgid "year"
+#~ msgstr "yil"
+
+#~ msgid "years"
+#~ msgstr "yil"
+
+#~ msgid "month"
+#~ msgstr "oy"
+
+#~ msgid "months"
+#~ msgstr "oy"
+
+#~ msgid "day"
+#~ msgstr "kun"
+
+#~ msgid "days"
+#~ msgstr "kun"
+
+#~ msgid "Online"
+#~ msgstr "Onlayn"
+
+#~ msgid "Offline"
+#~ msgstr "Oflayn"
+
+#~ msgid "Recently"
+#~ msgstr "Yaqinda"
+
+#~ msgid "Last Week"
+#~ msgstr "O‘tgan hafta"
+
+#~ msgid "Last Month"
+#~ msgstr "O‘tgan oy"
+
+#~ msgid "Long Ago"
+#~ msgstr "Anchadan beri"
+
+#~ msgid "MIA, Miami, USA, US"
+#~ msgstr "MIA, Mayami, AQSh"
+
+#~ msgid "AMS, Amsterdam, Netherlands, NL"
+#~ msgstr "AMS, Amsterdam, Niderlandiya"
+
+#~ msgid "MBA, Mumbai, India, IN"
+#~ msgstr "MBA, Mumbay, Hindiston"
+
+#~ msgid "STO, Stockholm, Sweden, SE"
+#~ msgstr "STO, Stokgolm, Shvetsiya"
+
+#~ msgid "SIN, Singapore, SG"
+#~ msgstr "SIN, Singapur"
+
+#~ msgid "LHR, London, United Kingdom, GB"
+#~ msgstr "LHR, London, Buyuk Britaniya"
+
+#~ msgid "FRA, Frankfurt, Germany, DE"
+#~ msgstr "FRA, Frankfurt, Germaniya"
+
+#~ msgid "JFK, New York, USA, US"
+#~ msgstr "JFK, Nyu-York, AQSh"
+
+#~ msgid "HKG, Hong Kong, HK"
+#~ msgstr "HKG, Gonkong"
+
+#~ msgid "TYO, Tokyo, Japan, JP"
+#~ msgstr "TYO, Tokio, Yaponiya"
+
+#~ msgid "SYD, Sydney, Australia, AU"
+#~ msgstr "SYD, Sidney, Avstraliya"
+
+#~ msgid "GRU, São Paulo, Brazil, BR"
+#~ msgstr "GRU, San-Paulu, Braziliya"
+
+#~ msgid "DXB, Dubai, UAE, AE"
+#~ msgstr "DXB, Dubay, BAA"
+
+#~ msgid "CDG, Paris, France, FR"
+#~ msgstr "CDG, Parij, Fransiya"
+
+#~ msgid "ICN, Seoul, South Korea, KR"
+#~ msgstr "ICN, Seul, Janubiy Koreya"
+
+#~ msgid "Full Name"
+#~ msgstr "To‘liq ism"
+
+#~ msgid "Username"
+#~ msgstr "Foydalanuvchi nomi"
+
+#~ msgid "User ID"
+#~ msgstr "Foydalanuvchi ID"
+
+#~ msgid "Chat ID"
+#~ msgstr "Chat ID"
+
+#~ msgid "Premium User"
+#~ msgstr "Premium foydalanuvchi"
+
+#~ msgid "Data Center"
+#~ msgstr "Ma’lumot markazi"
+
+#~ msgid "Account Age"
+#~ msgstr "Profil yoshi"
+
+#~ msgid "Thank You for Using Our Tool"
+#~ msgstr "Bizning vositamizdan foydalanganingiz uchun rahmat"
+
+#~ msgid "Profile Info"
+#~ msgstr "Profil ma’lumoti"
+
+#~ msgid "Channel"
+#~ msgstr "Kanal"
+
+#~ msgid "Group"
+#~ msgstr "Guruh"
+
+#~ msgid "Supergroup"
+#~ msgstr "Superguruh"
+
+#~ msgid "Private Chat"
+#~ msgstr "Shaxsiy chat"
+
+#~ msgid "Showing Forwarded User Info"
+#~ msgstr "Yuborilgan foydalanuvchi ma’lumotlari ko‘rsatilmoqda"
+
+#~ msgid "Name"
+#~ msgstr "Ismi"
+
+#~ msgid "Showing"
+#~ msgstr "Ko‘rsatilmoqda"
+
+#~ msgid "Created On"
+#~ msgstr "Yaratilgan sana"
+
+#~ msgid "Fragment Usernames"
+#~ msgstr "Qo‘shimcha username’lar"
+
+#~ msgid "Account Frozen"
+#~ msgstr "Profil bloklangan"
+
+#~ msgid "Last Seen"
+#~ msgstr "Oxirgi ko‘rish"
+
+#~ msgid "Telegram Staff"
+#~ msgstr "Telegram xodimi"
+
+#~ msgid "Permanent Link"
+#~ msgstr "Doimiy havola"
+
+#~ msgid "Click Here"
+#~ msgstr "Bu yerni bosing"
+
+#~ msgid "Total Members"
+#~ msgstr "Umumiy a’zolar soni"
+
+#~ msgid "❌ Invalid language!"
+#~ msgstr "❌ Noto‘g‘ri til tanlandi!"
+
+#~ msgid "Language has been set successfully!"
+#~ msgstr "Til muvaffaqiyatli o‘rnatildi!"
+
+#~ msgid "Your Channels and Groups"
+#~ msgstr "Sizning kanallaringiz va guruhlaringiz"
+
+#~ msgid "Click the buttons below to share your channel or group."
+#~ msgstr "Kanal yoki guruhni ulashish uchun quyidagi tugmalarni bosing."
+
+#~ msgid "Shared Chat Info"
+#~ msgstr "Ulashilgan chat ma’lumoti"
+
+#~ msgid "Shared User Info"
+#~ msgstr "Ulashilgan foydalanuvchi ma’lumoti"
+
+#~ msgid "Shared"
+#~ msgstr "Ulashilgan"
+
+#~ msgid "Type"
+#~ msgstr "Turi"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Info"
+#~ msgstr "Ma’lumot"

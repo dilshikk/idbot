@@ -1,0 +1,183 @@
+welcome_title: "👋 Welcome to TG iBot! 🆔"
+welcome_how_to: "🔧 How to Use?"
+welcome_step1: "1⃣ Click the buttons below to share a chat."
+welcome_step2: "2⃣ Receive the unique ID instantly."
+features_title: "💎 Features:"
+features_list: "- Users, bots, groups and channels\n- Fast and reliable"
+fetch_cta: "✅ Fetch Any Chat ID Instantly!"
+language_set: "✅ Language has been set successfully!"
+invalid_language: "❌ Invalid language!"
+internal_error: "⚠️ Internal error!"
+choose_language: "🌍 Please choose your language / Пожалуйста, выберите язык / Iltimos, tilni tanlang:"
+admin_private_only: "⚠ This command can only be used in private chat."
+admin_open_chat: "💬 Open chat with bot"
+chat_list_title: "📚 Your Channels and Groups"
+chat_list_step1: "Click the buttons below to share your channel or group."
+back_button: "🔙 Back"
+admin_button: "👑 Admins Chat"
+owner_button: "📚 Owner Chat"
+donate_button: "💰 Donate"
+donate_why_title: "**Why support TG iBot?**"
+donate_divider: "**━━━━━━━━━━━━━━━━━━**"
+donate_love: "🌟 **Love the service?**"
+donate_desc: "Your support helps keep **TG iBot** fast, reliable, and free for everyone. Even a small **Gift or Donation** makes a big difference! 💖"
+donate_choose: "👇 **Choose an amount to contribute:**"
+donate_why_contribute: "**Why contribute?**"
+donate_motivation: "More support = more motivation\nMore motivation = better tools\nBetter tools = more productivity\nMore productivity = less wasted time\nLess wasted time = more done with **TG iBot** 💡\n**More Muhahaha… 🤓🔥**"
+donate_generating: "Generating invoice for {amount} Stars...\nPlease wait ⏳"
+donate_invoice_generated: "**✅ Invoice for {amount} Stars generated!**"
+donate_in_progress: "**🚫 Wait! Contribution Already in Progress!**"
+donate_invoice_failed: "**❌ Invoice Creation Failed! Try Again!**"
+donate_invalid_input: "**❌ Invalid Input! Use a positive number.**"
+donate_system_error: "❌ Donation System Error"
+donate_invoice_title: "Support TG iBot"
+donate_invoice_desc: "Contribute {amount} Stars to support development 💫"
+donate_stars_label: "⭐️ {amount} Stars"
+donate_pay_btn: "💫 Donate Via Stars"
+donate_back: "🔙 Back"
+donate_updated: "Updated to {amount} Stars"
+donate_answered: "✅ Invoice Generated! Donate Now! ⭐️"
+donate_success: "**✅ Donation Successful!**\n\n🎉 Huge thanks {name} for donating {amount} ⭐️!\n\n**🧾 Transaction ID:** `{charge_id}`"
+donate_copy_tx: "📋 Copy Transaction ID"
+donate_contact_support: "📞 Contact Support"
+donate_payment_declined: "**❌ Payment Declined! Contact Support!**"
+donate_precheckout_failed: "Failed to process pre-checkout."
+processing_info: "Processing Info..."
+no_control_over_user: "**Looks Like I Don't Have Control Over The User**"
+help_btn_forward: "📬 Forward"
+help_btn_getme: "🙋‍♂️ Get Me"
+help_btn_sharedchat: "🌐 Shared Chat"
+help_btn_admins: "🛡️ Admins"
+help_btn_ownchats: "📚 Own Chats"
+help_btn_username: "👤 Username"
+help_btn_close: "❌ Close"
+help_btn_updates: "🔔 Join For Updates"
+help_back: "🔙 Back"
+help_main: "**Here Are TG iBot Options 👇:**\n\n"
+help_coming_soon: "Instructions will appear here soon 😎"
+help_forward: |
+  **Forward Message Tutorial 📬**
+
+  🔎 Want to grab the ID of a user or chat? Just forward a message to me! Here's how:
+
+  1️⃣ Find a message in any chat (user, group, channel, or bot).
+  2️⃣ Forward it to me privately.
+  3️⃣ I'll instantly reveal the ID, name, and more! ⚡
+
+  💡 **Pro Tip:** Works with any forwarded message, even from private chats! 😎
+help_getme: |
+  **Get Me Tutorial 🙋‍♂️**
+
+  🔍 Want to know your own Telegram ID? It's super easy!
+
+  1️⃣ Just type `/me` in the chat with me.
+  2️⃣ I'll send your user ID, name, and username instantly! ⚡
+  3️⃣ If you have a profile photo, I'll show it too! 📸
+
+  💡 **Pro Tip:** Use the button in the reply to copy your ID! 😎
+help_sharedchat: |
+  **Shared Chat Tutorial 🌐**
+
+  🔎 Need the ID of a user, group, or channel? Share it with me!
+
+  1️⃣ Type `/start` to see the sharing buttons.
+  2️⃣ Pick a user, bot, group, or channel to share.
+  3️⃣ I'll fetch the ID, name, and username instantly! ⚡
+
+  💡 **Pro Tip:** Works for public and private chats, plus bots and premium users! 😎
+help_admins: |
+  **Admins Tutorial 🛡️**
+
+  🔍 Want to see where you're an admin? I've got you!
+
+  1️⃣ Type `/admin` in the chat with me.
+  2️⃣ Use the buttons to share a channel or group where you have admin rights.
+  3️⃣ I'll reveal the ID and details instantly! ⚡
+
+  💡 **Pro Tip:** Perfect for managing your admin roles! 😎
+help_ownchats: |
+  **Own Chats Tutorial 📚**
+
+  🔎 Curious about your own channels or groups? Let's find them!
+
+  1️⃣ Type `/my` in the chat with me.
+  2️⃣ Use the buttons to share a channel or group you own.
+  3️⃣ I'll send the ID and details in a snap! ⚡
+
+  💡 **Pro Tip:** Great for keeping track of your own chats! 😎
+help_username: |
+  **Username Tutorial 👤**
+
+  🔎 Want info about a specific user? Just send me their username!
+
+  1️⃣ Type a username (e.g., `@username`) in the chat with me.
+  2️⃣ I'll fetch their ID, name, and other details instantly! ⚡
+  3️⃣ If they have a profile photo, I'll show it too! 📸
+
+  💡 **Pro Tip:** Works for any public username, even bots! 😎
+unknown: "Unknown"
+year: "year"
+years: "years"
+month: "month"
+months: "months"
+day: "day"
+days: "days"
+status_online: "Online"
+status_offline: "Offline"
+status_recently: "Recently"
+status_last_week: "Last Week"
+status_last_month: "Last Month"
+status_long_ago: "Long Ago"
+yes: "Yes"
+no: "No"
+showing: "Showing"
+profile_info: "Profile Info"
+bot_profile_info: "Bot's Profile Info"
+user_profile_info: "User's Profile Info"
+full_name: "Full Name"
+username_label: "Username"
+user_id: "User ID"
+chat_id: "Chat ID"
+premium_user: "Premium User"
+data_center: "Data Center"
+created_on: "Created On"
+account_age: "Account Age"
+fragment_usernames: "Fragment Usernames"
+account_frozen: "Account Frozen"
+last_seen: "Last Seen"
+telegram_staff: "Telegram Staff"
+permanent_link: "Permanent Link"
+click_here: "Click Here"
+thank_you: "t.me/tg_ibot"
+chat_type_channel: "Channel"
+chat_type_group: "Group"
+chat_type_supergroup: "Supergroup"
+chat_type_private: "Private Chat"
+unnamed_chat: "Unnamed Chat"
+total_members: "Total Members"
+forwarded_user_info: "Showing Forwarded User Info"
+name_label: "Name"
+language_button: "🌍 Language"
+shared_chat_info: "Shared Chat Info"
+shared_info: "Shared"
+type_label: "Type"
+id_label: "ID"
+no_username: "No username"
+bot_label: "Bot"
+user_label: "User"
+info_label: "Info"
+admin_btn_channels: "📢 Channels"
+admin_btn_groups: "👥 Groups"
+admin_placeholder: "Choose a admin chat type"
+my_btn_channel: "📢 Your Channel"
+my_btn_group: "👥 Your Group"
+my_placeholder: "Choose a own chat type"
+menu_btn_user_info: "👤 User Info"
+menu_btn_public_group: "👥 Public Group"
+menu_btn_private_group: "🔒 Private Group"
+menu_btn_public_channel: "📢 Public Channel"
+menu_btn_private_channel: "🔒 Private Channel"
+menu_btn_bot: "🤖 Bot"
+menu_btn_premium: "🌟 Premium Users"
+menu_placeholder: "Choose a chat type"
+

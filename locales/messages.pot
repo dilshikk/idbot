@@ -1,0 +1,351 @@
+# Translations template for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-07-08 05:04+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: core/start.py:87
+msgid "✅ Language has been set successfully!"
+msgstr ""
+
+#: miscs/adbtn.py:48
+msgid "📢 Channels"
+msgstr ""
+
+#: miscs/adbtn.py:56
+msgid "👥 Groups"
+msgstr ""
+
+#: miscs/adbtn.py:64 miscs/mybtn.py:36 modules/donate.py:93
+msgid "🔙 Back"
+msgstr ""
+
+#: miscs/adbtn.py:67
+msgid "Choose a admin chat type"
+msgstr ""
+
+#: miscs/mybtn.py:28
+msgid "📢 Your Channel"
+msgstr ""
+
+#: miscs/mybtn.py:32
+msgid "👥 Your Group"
+msgstr ""
+
+#: miscs/mybtn.py:39
+msgid "Choose a own chat type"
+msgstr ""
+
+#: miscs/startbtn.py:28
+msgid "👤 User Info"
+msgstr ""
+
+#: miscs/startbtn.py:34
+msgid "👥 Public Group"
+msgstr ""
+
+#: miscs/startbtn.py:38
+msgid "🔒 Private Group"
+msgstr ""
+
+#: miscs/startbtn.py:44
+msgid "📢 Public Channel"
+msgstr ""
+
+#: miscs/startbtn.py:48
+msgid "🔒 Private Channel"
+msgstr ""
+
+#: miscs/startbtn.py:54
+msgid "🤖 Bot"
+msgstr ""
+
+#: miscs/startbtn.py:58
+msgid "🌟 Premium Users"
+msgstr ""
+
+#: miscs/startbtn.py:63
+msgid "👑 Admins Chat"
+msgstr ""
+
+#: miscs/startbtn.py:64
+msgid "📚 Owner Chat"
+msgstr ""
+
+#: miscs/startbtn.py:67
+msgid "💰 Donate"
+msgstr ""
+
+#: miscs/startbtn.py:68
+msgid "🌍 Language"
+msgstr ""
+
+#: miscs/startbtn.py:72
+msgid "Choose a chat type"
+msgstr ""
+
+#: modules/admin.py:27 modules/my.py:27
+msgid "⚠️ This command can only be used in private chat."
+msgstr ""
+
+#: modules/admin.py:29 modules/my.py:30
+msgid "💬 Open chat with bot"
+msgstr ""
+
+#: modules/donate.py:76 modules/donate.py:142
+#, python-brace-format
+msgid ""
+"Generating invoice for {amount} Stars...\n"
+"Please wait ⏳"
+msgstr ""
+
+#: modules/donate.py:80
+msgid "**❌ Invalid Input! Use a positive number.**"
+msgstr ""
+
+#: modules/donate.py:84 modules/donate.py:174
+msgid "❌ Donation System Error"
+msgstr ""
+
+#: modules/donate.py:90
+msgid "**🚫 Wait! Contribution Already in Progress!**"
+msgstr ""
+
+#: modules/donate.py:98
+#, python-brace-format
+msgid "⭐️ {amount} Stars"
+msgstr ""
+
+#: modules/donate.py:99
+msgid "💫 Donate Via Stars"
+msgstr ""
+
+#: modules/donate.py:103
+msgid "Support TG iBot"
+msgstr ""
+
+#: modules/donate.py:104
+#, python-brace-format
+msgid "Contribute {amount} Stars to support development 💫"
+msgstr ""
+
+#: modules/donate.py:114
+#, python-brace-format
+msgid "**✅ Invoice for {amount} Stars generated!**"
+msgstr ""
+
+#: modules/donate.py:122
+msgid "**❌ Invoice Creation Failed! Try Again!**"
+msgstr ""
+
+#: modules/donate.py:144
+msgid "✅ Invoice Generated! Donate Now! ⭐️"
+msgstr ""
+
+#: modules/donate.py:150 modules/donate.py:156
+#, python-brace-format
+msgid "Updated to {amount} Stars"
+msgstr ""
+
+#: modules/donate.py:188
+msgid "Failed to process pre-checkout."
+msgstr ""
+
+#: modules/donate.py:222
+msgid "📋 Copy Transaction ID"
+msgstr ""
+
+#: modules/donate.py:253
+msgid "**❌ Payment Declined! Contact Support!**"
+msgstr ""
+
+#: modules/donate.py:256
+msgid "📞 Contact Support"
+msgstr ""
+
+#: modules/fwd.py:20 modules/info.py:40 modules/me.py:22 modules/username.py:22
+msgid "Processing Info..."
+msgstr ""
+
+#: modules/fwd.py:40 modules/helpers.py:30
+msgid "Unknown"
+msgstr ""
+
+#: modules/fwd.py:72 modules/info.py:51 modules/info.py:81 modules/me.py:51
+#: modules/username.py:61
+msgid "**Looks Like I Don't Have Control Over The User**"
+msgstr ""
+
+#: modules/help.py:14
+msgid "📬 Forward"
+msgstr ""
+
+#: modules/help.py:15
+msgid "🙋‍♂️ Get Me"
+msgstr ""
+
+#: modules/help.py:18
+msgid "🌐 Shared Chat"
+msgstr ""
+
+#: modules/help.py:19
+msgid "🛡️ Admins"
+msgstr ""
+
+#: modules/help.py:22
+msgid "📚 Own Chats"
+msgstr ""
+
+#: modules/help.py:23
+msgid "👤 Username"
+msgstr ""
+
+#: modules/help.py:25
+msgid "❌ Close"
+msgstr ""
+
+#: modules/help.py:26
+msgid "🔔 Join For Updates"
+msgstr ""
+
+#: modules/help.py:38
+msgid ""
+"**Here Are TG iBot Options 👇:**\n"
+"\n"
+msgstr ""
+
+#: modules/help.py:40
+msgid ""
+"**Forward Message Tutorial 📬**\n"
+"\n"
+"🔎 Want to grab the ID of a user or chat? Just forward a message to me! "
+"Here's how:\n"
+"\n"
+"1️⃣ Find a message in any chat (user, group, channel, or bot).\n"
+"2️⃣ Forward it to me privately.\n"
+"3️⃣ I'll instantly reveal the ID, name, and more! ⚡\n"
+"\n"
+"💡 **Pro Tip:** Works with any forwarded message, even from private chats!"
+" 😎"
+msgstr ""
+
+#: modules/help.py:48
+msgid ""
+"**Get Me Tutorial 🙋‍♂️**\n"
+"\n"
+"🔍 Want to know your own Telegram ID? It's super easy!\n"
+"\n"
+"1️⃣ Just type `/me` in the chat with me.\n"
+"2️⃣ I'll send your user ID, name, and username instantly! ⚡\n"
+"3️⃣ If you have a profile photo, I'll show it too! 📸\n"
+"\n"
+"💡 **Pro Tip:** Use the button in the reply to copy your ID! 😎"
+msgstr ""
+
+#: modules/help.py:56
+msgid ""
+"**Shared Chat Tutorial 🌐**\n"
+"\n"
+"🔎 Need the ID of a user, group, or channel? Share it with me!\n"
+"\n"
+"1️⃣ Type `/start` to see the sharing buttons.\n"
+"2️⃣ Pick a user, bot, group, or channel to share.\n"
+"3️⃣ I'll fetch the ID, name, and username instantly! ⚡\n"
+"\n"
+"💡 **Pro Tip:** Works for public and private chats, plus bots and premium "
+"users! 😎"
+msgstr ""
+
+#: modules/help.py:64
+msgid ""
+"**Admins Tutorial 🛡️**\n"
+"\n"
+"🔍 Want to see where you're an admin? I've got you!\n"
+"\n"
+"1️⃣ Type `/admin` in the chat with me.\n"
+"2️⃣ Use the buttons to share a channel or group where you have admin "
+"rights.\n"
+"3️⃣ I'll reveal the ID and details instantly! ⚡\n"
+"\n"
+"💡 **Pro Tip:** Perfect for managing your admin roles! 😎"
+msgstr ""
+
+#: modules/help.py:72
+msgid ""
+"**Own Chats Tutorial 📚**\n"
+"\n"
+"🔎 Curious about your own channels or groups? Let's find them!\n"
+"\n"
+"1️⃣ Type `/my` in the chat with me.\n"
+"2️⃣ Use the buttons to share a channel or group you own.\n"
+"3️⃣ I'll send the ID and details in a snap! ⚡\n"
+"\n"
+"💡 **Pro Tip:** Great for keeping track of your own chats! 😎"
+msgstr ""
+
+#: modules/help.py:80
+msgid ""
+"**Username Tutorial 👤**\n"
+"\n"
+"🔎 Want info about a specific user? Just send me their username!\n"
+"\n"
+"1️⃣ Type a username (e.g., `@username`) in the chat with me.\n"
+"2️⃣ I'll fetch their ID, name, and other details instantly! ⚡\n"
+"3️⃣ If they have a profile photo, I'll show it too! 📸\n"
+"\n"
+"💡 **Pro Tip:** Works for any public username, even bots! 😎"
+msgstr ""
+
+#: modules/help.py:138
+msgid "Instructions will appear here soon 😎"
+msgstr ""
+
+#: modules/helpers.py:80
+msgid "Bot's Profile Info"
+msgstr ""
+
+#: modules/helpers.py:80
+msgid "User's Profile Info"
+msgstr ""
+
+#: modules/helpers.py:98 modules/helpers.py:111
+msgid "Yes"
+msgstr ""
+
+#: modules/helpers.py:98 modules/helpers.py:111
+msgid "No"
+msgstr ""
+
+#: modules/helpers.py:142 shared/chatinfo.py:35
+msgid "Unnamed Chat"
+msgstr ""
+
+#: modules/language.py:36
+msgid "🌍 Choose your language:"
+msgstr ""
+
+#: shared/chatinfo.py:37 shared/chatinfo.py:58
+msgid "No username"
+msgstr ""
+
+#: shared/chatinfo.py:59
+msgid "Bot"
+msgstr ""
+
+#: shared/chatinfo.py:59
+msgid "User"
+msgstr ""
+

@@ -1,0 +1,183 @@
+welcome_title: "👋 TG iBot'ga xush kelibsiz! 🆔"
+welcome_how_to: "🔧 Qanday foydalanish kerak?"
+welcome_step1: "1⃣ Chat ulashish uchun quyidagi tugmalarni bosing."
+welcome_step2: "2⃣ Noyob ID'ni darhol oling."
+features_title: "💎 Imkoniyatlar:"
+features_list: "- Foydalanuvchilar, botlar, guruhlar va kanallar\n- Tez va ishonchli"
+fetch_cta: "✅ Istalgan Chat ID'ni darhol oling!"
+language_set: "✅ Til muvaffaqiyatli o'rnatildi!"
+invalid_language: "❌ Noto'g'ri til!"
+internal_error: "⚠️ Ichki xato!"
+choose_language: "🌍 Please choose your language / Пожалуйста, выберите язык / Iltimos, tilni tanlang:"
+admin_private_only: "⚠ Bu buyruq faqat shaxsiy chatda ishlatilishi mumkin."
+admin_open_chat: "💬 Bot bilan chat ochish"
+chat_list_title: "📚 Kanallaringiz va guruhlaringiz"
+chat_list_step1: "Kanal yoki guruhingizni ulashish uchun quyidagi tugmalarni bosing."
+back_button: "🔙 Orqaga"
+admin_button: "👑 Admin chatlarim"
+owner_button: "📚 Yaratgan chatlarim"
+donate_button: "💰 Xayriya"
+donate_why_title: "**Nima uchun TG iBot'ni qo'llab-quvvatlash kerak?**"
+donate_divider: "**━━━━━━━━━━━━━━━━━━**"
+donate_love: "🌟 **Xizmat yoqdimi?**"
+donate_desc: "Sizning yordamingiz TG iBot'ni tez, ishonchli va bepul saqlashga yordam beradi. Hatto kichik **Sovg'a** ham katta farq qiladi! 💖"
+donate_choose: "👇 **Miqdorni tanlang:**"
+donate_why_contribute: "**Nima uchun hissa qo'shish kerak?**"
+donate_motivation: "Ko'proq qo'llab-quvvatlash = ko'proq motivatsiya\nKo'proq motivatsiya = yaxshiroq vositalar\nYaxshiroq vositalar = ko'proq samaradorlik\nKo'proq samaradorlik = kamroq behuda vaqt\nKamroq behuda vaqt = TG iBot bilan ko'proq ish 💡\n**Yana Muhahaha… 🤓🔥**"
+donate_generating: "{amount} Stars uchun hisob-faktura yaratilmoqda...\nIltimos, kuting ⏳"
+donate_invoice_generated: "**✅ {amount} Stars uchun hisob-faktura yaratildi!**"
+donate_in_progress: "**🚫 Kuting! Hissa allaqachon jarayonda!**"
+donate_invoice_failed: "**❌ Hisob-faktura yaratilmadi! Qayta urinib ko'ring!**"
+donate_invalid_input: "**❌ Noto'g'ri kiritish! Musbat son ishlating.**"
+donate_system_error: "❌ Xayriya tizimida xato"
+donate_invoice_title: "TG iBot'ni qo'llab-quvvatlash"
+donate_invoice_desc: "Rivojlantirishni qo'llab-quvvatlash uchun {amount} Stars 💫"
+donate_stars_label: "⭐️ {amount} Stars"
+donate_pay_btn: "💫 Stars orqali xayriya"
+donate_back: "🔙 Orqaga"
+donate_updated: "{amount} Stars ga yangilandi"
+donate_answered: "✅ Hisob-faktura yaratildi! Xayriya qiling! ⭐️"
+donate_success: "**✅ Xayriya muvaffaqiyatli!**\n\n🎉 {name} {amount} ⭐️ uchun katta rahmat!\n\n**🧾 Tranzaksiya ID:** `{charge_id}`"
+donate_copy_tx: "📋 Tranzaksiya ID nusxalash"
+donate_contact_support: "📞 Qo'llab-quvvatlash bilan bog'lanish"
+donate_payment_declined: "**❌ To'lov rad etildi! Qo'llab-quvvatlash bilan bog'laning!**"
+donate_precheckout_failed: "Oldindan tekshirishni qayta ishlashda xato."
+processing_info: "Ma'lumot qayta ishlanmoqda..."
+no_control_over_user: "**Foydalanuvchi ustidan nazoratim yo'q**"
+help_btn_forward: "📬 Yo'naltirish"
+help_btn_getme: "🙋‍♂️ Mening profilim"
+help_btn_sharedchat: "🌐 Chat ulashish"
+help_btn_admins: "🛡️ Admin chatlar"
+help_btn_ownchats: "📚 Mening chatlarim"
+help_btn_username: "👤 Username bo'yicha"
+help_btn_close: "❌ Yopish"
+help_btn_updates: "🔔 Yangiliklar kanaliga obuna"
+help_back: "🔙 Orqaga"
+help_main: "**TG iBot imkoniyatlari 👇:**\n\n"
+help_coming_soon: "Ko'rsatmalar tez orada bu yerda paydo bo'ladi 😎"
+help_forward: |
+  **Yo'naltirish bo'yicha qo'llanma 📬**
+
+  🔎 Foydalanuvchi yoki chat ID'sini bilmoqchimisiz? Menga xabar yo'naltiring!
+
+  1️⃣ Istalgan chatda xabar toping (foydalanuvchi, guruh, kanal yoki bot).
+  2️⃣ Uni menga shaxsiy xabarda yo'naltiring.
+  3️⃣ Men ID, ism va boshqa ma'lumotlarni darhol ko'rsataman! ⚡
+
+  💡 **Maslahat:** Har qanday yo'naltirilgan xabar bilan ishlaydi, hatto shaxsiy chatlardan ham! 😎
+help_getme: |
+  **Mening profilim bo'yicha qo'llanma 🙋‍♂️**
+
+  🔍 O'z Telegram ID'ingizni bilmoqchimisiz? Bu juda oddiy!
+
+  1️⃣ Men bilan chatda `/me` yozing.
+  2️⃣ Men ID, ism va username'ingizni darhol yuboraman! ⚡
+  3️⃣ Profil rasmingiz bo'lsa, uni ham ko'rsataman! 📸
+
+  💡 **Maslahat:** ID'ni nusxalash uchun javobdagi tugmadan foydalaning! 😎
+help_sharedchat: |
+  **Chat ulashish bo'yicha qo'llanma 🌐**
+
+  🔎 Foydalanuvchi, guruh yoki kanal ID'si kerakmi? Menga ulashing!
+
+  1️⃣ Tugmalarni ko'rish uchun `/start` yozing.
+  2️⃣ Foydalanuvchi, bot, guruh yoki kanalni tanlang.
+  3️⃣ Men ID, ism va username'ni darhol olaman! ⚡
+
+  💡 **Maslahat:** Ochiq va yopiq chatlar, botlar va premium foydalanuvchilar uchun ishlaydi! 😎
+help_admins: |
+  **Admin chatlar bo'yicha qo'llanma 🛡️**
+
+  🔍 Qayerlarda admin ekanligingizni bilmoqchimisiz?
+
+  1️⃣ Men bilan chatda `/admin` yozing.
+  2️⃣ Admin huquqlaringiz bor kanal yoki guruhni ulashish uchun tugmalardan foydalaning.
+  3️⃣ Men ID va tafsilotlarni darhol ko'rsataman! ⚡
+
+  💡 **Maslahat:** Admin rollaringizni boshqarish uchun ideal! 😎
+help_ownchats: |
+  **Mening chatlarim bo'yicha qo'llanma 📚**
+
+  🔎 O'z kanallaringiz yoki guruhlaringiz haqida bilmoqchimisiz?
+
+  1️⃣ Men bilan chatda `/my` yozing.
+  2️⃣ O'z kanal yoki guruhingizni ulashish uchun tugmalardan foydalaning.
+  3️⃣ Men ID va tafsilotlarni bir zumda yuboraman! ⚡
+
+  💡 **Maslahat:** O'z chatlaringizni kuzatib borish uchun zo'r! 😎
+help_username: |
+  **Username bo'yicha qo'llanma 👤**
+
+  🔎 Muayyan foydalanuvchi haqida ma'lumot kerakmi? Username'ini yuboring!
+
+  1️⃣ Men bilan chatda username yozing (masalan, `@username`).
+  2️⃣ Men ID, ism va boshqa ma'lumotlarni darhol olaman! ⚡
+  3️⃣ Profil rasmi bo'lsa, uni ham ko'rsataman! 📸
+
+  💡 **Maslahat:** Istalgan ochiq username uchun ishlaydi, hatto botlar ham! 😎
+unknown: "Noma'lum"
+year: "yil"
+years: "yil"
+month: "oy"
+months: "oy"
+day: "kun"
+days: "kun"
+status_online: "Online"
+status_offline: "Offline"
+status_recently: "Yaqinda"
+status_last_week: "O'tgan haftada"
+status_last_month: "O'tgan oyda"
+status_long_ago: "Ancha oldin"
+yes: "Ha"
+no: "Yo'q"
+showing: "Ko'rsatilmoqda"
+profile_info: "Profil ma'lumotlari"
+bot_profile_info: "Bot profil ma'lumotlari"
+user_profile_info: "Foydalanuvchi profil ma'lumotlari"
+full_name: "To'liq ism"
+username_label: "Username"
+user_id: "Foydalanuvchi ID"
+chat_id: "Chat ID"
+premium_user: "Premium foydalanuvchi"
+data_center: "Ma'lumotlar markazi"
+created_on: "Yaratilgan sana"
+account_age: "Hisob yoshi"
+fragment_usernames: "Fragment usernamelar"
+account_frozen: "Hisob muzlatilgan"
+last_seen: "Oxirgi faollik"
+telegram_staff: "Telegram xodimi"
+permanent_link: "Doimiy havola"
+click_here: "Bu yerga bosing"
+thank_you: "t.me/tg_ibot"
+chat_type_channel: "Kanal"
+chat_type_group: "Guruh"
+chat_type_supergroup: "Superguruh"
+chat_type_private: "Shaxsiy chat"
+unnamed_chat: "Nomsiz chat"
+total_members: "Jami a'zolar"
+forwarded_user_info: "Yo'naltirilgan foydalanuvchi ma'lumotlari"
+name_label: "Ism"
+language_button: "🌍 Til"
+shared_chat_info: "Ulashilgan chat ma'lumotlari"
+shared_info: "Ulashilgan"
+type_label: "Tur"
+id_label: "ID"
+no_username: "Username yo'q"
+bot_label: "Bot"
+user_label: "Foydalanuvchi"
+info_label: "Ma'lumot"
+admin_btn_channels: "📢 Kanallar"
+admin_btn_groups: "👥 Guruhlar"
+admin_placeholder: "Admin chat turini tanlang"
+my_btn_channel: "📢 Kanalingiz"
+my_btn_group: "👥 Guruhingiz"
+my_placeholder: "O'z chat turingizni tanlang"
+menu_btn_user_info: "👤 Foydalanuvchi ma'lumotlari"
+menu_btn_public_group: "👥 Ochiq guruh"
+menu_btn_private_group: "🔒 Yopiq guruh"
+menu_btn_public_channel: "📢 Ochiq kanal"
+menu_btn_private_channel: "🔒 Yopiq kanal"
+menu_btn_bot: "🤖 Bot"
+menu_btn_premium: "🌟 Premium foydalanuvchilar"
+menu_placeholder: "Chat turini tanlang"
+
