@@ -57,18 +57,25 @@ async def set_user_language(bot: Client, query):
     lang_code = query.data.split(":")[1]
 
     if lang_code not in LANGUAGES:
-        await query.answer(_("invalid_language"), show_alert=True)
+        # Переводчик создаём до использования: раньше здесь падал UnboundLocalError
+        current = get_translator(get_lang(user_id) or "ru")
+        await query.answer(current("invalid_language"), show_alert=True)
         return
 
-    set_lang(user_id, lang_code)
-    _ = get_translator(lang_code)
+    try:
+        set_lang(user_id, lang_code)
+        _ = get_translator(lang_code)
 
-    await query.message.edit_text(
-        f"**{_('language_set')}**\n\n**{LANGUAGES[lang_code]}**"
-    )
-    await bot.send_message(
-        chat_id=user_id,
-        text=f"**{_('welcome_title')}**\n\n{_('fetch_cta')}",
-        reply_markup=get_menu_buttons(user_id),
-    )
-    LOGGER.info(f"✅ User {user_id} changed language to {lang_code}")
+        await query.message.edit_text(
+            f"**{_('language_set')}**\n\n**{LANGUAGES[lang_code]}**"
+        )
+        await bot.send_message(
+            chat_id=user_id,
+            text=f"**{_('welcome_title')}**\n\n{_('fetch_cta')}",
+            reply_markup=get_menu_buttons(user_id),
+        )
+        await query.answer()
+        LOGGER.info(f"✅ User {user_id} changed language to {lang_code}")
+    except Exception as e:
+        LOGGER.error(f"Error changing language for {user_id}: {e}", exc_info=True)
+        await query.answer("⚠️ Internal error!", show_alert=True)
