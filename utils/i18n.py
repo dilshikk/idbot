@@ -5,6 +5,14 @@ from functools import lru_cache
 LOCALES_DIR = os.path.join(os.path.dirname(__file__), "..", "locales")
 DEFAULT_LANG = "en"
 
+# Единый список поддерживаемых языков. Чтобы добавить язык,
+# допишите его сюда и положите файл locales/<код>.yaml
+LANGUAGES = {
+    "ru": "🇷🇺 Русский",
+    "en": "🇬🇧 English",
+    "uz": "🇺🇿 Oʻzbekcha",
+}
+
 
 @lru_cache(maxsize=10)
 def load_translations(lang: str) -> dict:
@@ -19,6 +27,6 @@ def get_translator(lang: str):
     translations = load_translations(lang)
 
     def _(key: str) -> str:
-        return translations.get(key, key) 
+        return translations.get(key, key)
 
     return _
