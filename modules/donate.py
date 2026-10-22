@@ -12,7 +12,11 @@ from utils import LOGGER
 from bot import bot
 from config import COMMAND_PREFIX, ADMIN_ID
 from database import get_lang, save_payment, get_payment
-from utils.i18n import get_translator, load_translations
+from utils.i18n import get_translator, load_translations, LANGUAGES
+
+CURRENCY = "XTR"
+PAYLOAD_PREFIX = "contribution"
+MAX_AMOUNT = 100_000  # верхний предел Telegram Stars на один счёт
 
 _invoice_locks: dict[int, asyncio.Lock] = {}
 
@@ -32,9 +36,38 @@ def _get_lock(user_id: int) -> asyncio.Lock:
     return _invoice_locks[user_id]
 
 
+def _build_payload(user_id: int, amount: int) -> str:
+    return f"{PAYLOAD_PREFIX}_{user_id}_{amount}_{int(time.time())}_{uuid.uuid4().hex[:8]}"
+
+
+def _validate_payment(payload, user_id: int, amount: int, currency: str) -> str | None:
+    """Проверяет, что оплачивается именно наш счёт.
+    Возвращает причину отказа или None, если всё в порядке."""
+    if isinstance(payload, bytes):
+        payload = payload.decode("utf-8", errors="ignore")
+    if currency != CURRENCY:
+        return f"wrong currency {currency}"
+
+    parts = (payload or "").split("_")
+    if len(parts) != 5 or parts[0] != PAYLOAD_PREFIX:
+        return "unknown payload format"
+
+    _, payload_user, payload_amount, _ts, _rnd = parts
+    if not (payload_user.isdigit() and payload_amount.isdigit()):
+        return "malformed payload"
+    if int(payload_user) != user_id:
+        # счёт выставлен другому пользователю
+        return f"payload user {payload_user} != payer {user_id}"
+    if int(payload_amount) != amount:
+        return f"payload amount {payload_amount} != paid {amount}"
+    if not 0 < amount <= MAX_AMOUNT:
+        return f"amount out of range: {amount}"
+    return None
+
+
 def _get_all_donate_variants() -> set:
     variants = set()
-    for lang in ("ru", "en", "uz"):
+    for lang in LANGUAGES:
         t = load_translations(lang)
         if "donate_button" in t:
             variants.add(t["donate_button"])
@@ -91,7 +124,7 @@ async def donate_command(client: Client, message):
             return
 
         parts = text.split()
-        if len(parts) == 2 and parts[1].isdigit() and int(parts[1]) > 0:
+        if len(parts) == 2 and parts[1].isdigit() and 0 < int(parts[1]) <= MAX_AMOUNT:
             amount = int(parts[1])
             loading = await message.reply_text(
                 _("donate_generating").format(amount=amount)
@@ -117,7 +150,7 @@ async def _generate_invoice(chat_id: int, user_id: int, amount: int, client: Cli
 
     async with lock:
         try:
-            payload = f"contribution_{user_id}_{amount}_{int(time.time())}_{str(uuid.uuid4())[:8]}"
+            payload = _build_payload(user_id, amount)
             prices = [LabeledPrice(label=_("donate_stars_label").format(amount=amount), amount=amount)]
             pay_btn = InlineKeyboardMarkup([[InlineKeyboardButtonBuy(_("donate_pay_btn"))]])
 
@@ -126,7 +159,7 @@ async def _generate_invoice(chat_id: int, user_id: int, amount: int, client: Cli
                 title=_("donate_invoice_title"),
                 description=_("donate_invoice_desc").format(amount=amount),
                 payload=payload,
-                currency="XTR",
+                currency=CURRENCY,
                 prices=prices,
                 start_parameter="donate-stars",
                 reply_markup=pay_btn,
@@ -170,7 +203,7 @@ async def handle_donate_callback(client: Client, callback_query):
             await callback_query.answer(_("donate_answered"))
 
         elif data.startswith("increment_gift_"):
-            new_amount = int(data.split("_")[2]) + 5
+            new_amount = min(MAX_AMOUNT, int(data.split("_")[2]) + 5)
             await callback_query.message.edit_text(
                 _get_donation_text(_),
                 parse_mode=ParseMode.MARKDOWN,
@@ -220,16 +253,30 @@ async def handle_donate_callback(client: Client, callback_query):
 @bot.on_pre_checkout_query()
 async def process_pre_checkout_query(client: Client, pre_checkout_query):
     user_id = pre_checkout_query.from_user.id if pre_checkout_query.from_user else 0
+    _ = get_translator(get_lang(user_id))
+
+    # Раньше бот одобрял любой платёж. Теперь сверяем счёт с плательщиком,
+    # суммой и валютой, и отклоняем всё, что выставлено не нами.
+    reason = _validate_payment(
+        pre_checkout_query.invoice_payload,
+        user_id,
+        pre_checkout_query.total_amount,
+        pre_checkout_query.currency,
+    )
+
     try:
+        if reason:
+            LOGGER.warning(f"⛔ Payment rejected: query={pre_checkout_query.id}, user={user_id}, reason={reason}")
+            await client.answer_pre_checkout_query(
+                pre_checkout_query.id, ok=False,
+                error_message=_("donate_precheckout_failed"),
+            )
+            return
+
         await client.answer_pre_checkout_query(pre_checkout_query.id, ok=True)
         LOGGER.info(f"✅ Payment approved: query={pre_checkout_query.id}, user={user_id}")
     except Exception as e:
-        LOGGER.error(f"❌ Pre-checkout failed: {e}")
-        _ = get_translator(get_lang(user_id))
-        await client.answer_pre_checkout_query(
-            pre_checkout_query.id, ok=False,
-            error_message=_("donate_precheckout_failed"),
-        )
+        LOGGER.error(f"❌ Pre-checkout answer failed: {e}")
 
 
 @bot.on_message(filters.successful_payment)
@@ -248,7 +295,15 @@ async def process_successful_payment(client: Client, message):
         amount = payment.total_amount
         charge_id = payment.telegram_payment_charge_id
 
-        payment_id = str(uuid.uuid4())[:16]
+        # Деньги уже списаны, поэтому платёж сохраняем в любом случае,
+        # а о несовпадении сообщаем админу, чтобы он мог сделать возврат.
+        mismatch = _validate_payment(
+            getattr(payment, "invoice_payload", ""), user_id, amount, payment.currency
+        )
+        if mismatch:
+            LOGGER.error(f"⚠️ Successful payment mismatch: user={user_id}, charge={charge_id}, reason={mismatch}")
+
+        payment_id = uuid.uuid4().hex[:16]
         save_payment(payment_id, user_id, full_name, username, amount, charge_id)
 
         await client.send_message(
@@ -263,6 +318,7 @@ async def process_successful_payment(client: Client, message):
         refund_btn = InlineKeyboardMarkup([[
             InlineKeyboardButton(f"Refund {amount} ⭐️", callback_data=f"refund_{payment_id}")
         ]])
+        warning = f"\n⚠️ **Check:** {mismatch}" if mismatch else ""
         for admin_id in _admin_ids():
             try:
                 await client.send_message(
@@ -271,7 +327,7 @@ async def process_successful_payment(client: Client, message):
                         f"**🤗 New Donation!**\n**━━━━━━━━━━━━━━━**\n"
                         f"**From:** {full_name}\n**Username:** {username}\n"
                         f"**UserID:** `{user_id}`\n**Amount:** {amount} ⭐️\n"
-                        f"**Transaction:** `{charge_id}`\n**━━━━━━━━━━━━━━━**"
+                        f"**Transaction:** `{charge_id}`{warning}\n**━━━━━━━━━━━━━━━**"
                     ),
                     parse_mode=ParseMode.MARKDOWN,
                     reply_markup=refund_btn,
