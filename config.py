@@ -30,22 +30,32 @@ def _required(name: str) -> str:
     return value
 
 
-def _int_list(raw: str) -> list[int]:
-    return [int(x) for x in raw.replace(" ", "").split(",") if x]
+def _int(name: str, raw: str) -> int:
+    try:
+        return int(raw)
+    except ValueError:
+        # Значение не печатаем целиком: туда по ошибке мог попасть секрет
+        raise RuntimeError(f"Переменная {name} должна быть числом") from None
+
+
+def _int_list(name: str, raw: str) -> list[int]:
+    return [_int(name, x) for x in raw.replace(" ", "").split(",") if x]
 
 
 _load_env_file(ENV_FILE)
 
-API_ID = int(_required("API_ID"))
+API_ID = _int("API_ID", _required("API_ID"))
 API_HASH = _required("API_HASH")
 BOT_TOKEN = _required("BOT_TOKEN")
 
 # Один или несколько ID через запятую: ADMIN_ID=123,456
-ADMIN_ID = _int_list(_required("ADMIN_ID"))
+ADMIN_ID = _int_list("ADMIN_ID", _required("ADMIN_ID"))
+if not ADMIN_ID:
+    raise RuntimeError("ADMIN_ID должен содержать хотя бы один ID")
 
 # Обязательна: сюда бот пишет о новых пользователях и ошибках
-LOG_GROUP_ID = int(_required("LOG_GROUP_ID"))
+LOG_GROUP_ID = _int("LOG_GROUP_ID", _required("LOG_GROUP_ID"))
 COMMAND_PREFIX = os.environ.get("COMMAND_PREFIX", "#|.|/|!|,")
 
-# Сколько обработчиков работают одновременно. 1000 было слишком много.
-WORKERS = int(os.environ.get("WORKERS", "16"))
+# Сколько обработчиков работают одновременно (от 1 до 64)
+WORKERS = min(max(_int("WORKERS", os.environ.get("WORKERS", "16")), 1), 64)
