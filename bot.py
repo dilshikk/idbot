@@ -1,7 +1,7 @@
 from pyrogram import Client
 from pyrogram.enums import ParseMode
 from utils import LOGGER
-from config import API_ID, API_HASH, BOT_TOKEN
+from config import API_ID, API_HASH, BOT_TOKEN, WORKERS
 
 LOGGER.info("Creating Bot Client From BOT_TOKEN")
 bot = Client(
@@ -9,10 +9,10 @@ bot = Client(
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
-    workers=1000,
+    workers=WORKERS,
     parse_mode=ParseMode.MARKDOWN,
 )
-LOGGER.info("Bot Client Created Successfully!")
+LOGGER.info(f"Bot Client Created Successfully! (workers={WORKERS})")
 
 _bot_username: str | None = None
 
