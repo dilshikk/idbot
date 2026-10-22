@@ -5,6 +5,7 @@ from bot import bot
 from database.db import init_db
 from utils import LOGGER
 from core.start import start
+from modules.usersync import sync_username_on_message, sync_username_on_callback
 from modules.help import help_command
 from modules.my import my_command
 from modules.admin import admin_command
