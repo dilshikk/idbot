@@ -1,26 +1,46 @@
 import sqlite3
 import os
 import logging
+import threading
 from datetime import datetime
 from contextlib import contextmanager
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "database.db")
+DEFAULT_LANG = "ru"
 LOGGER = logging.getLogger(__name__)
+
+# Одно постоянное подключение вместо нового на каждый запрос:
+# открытие файла SQLite было самой медленной частью и тормозило весь бот.
+_conn: sqlite3.Connection | None = None
+_lock = threading.Lock()
+
+# Язык читается на каждое сообщение, поэтому держим его в памяти.
+_lang_cache: dict[int, str] = {}
+
+
+def _get_connection() -> sqlite3.Connection:
+    global _conn
+    if _conn is None:
+        _conn = sqlite3.connect(DB_PATH, check_same_thread=False, timeout=5)
+        _conn.row_factory = sqlite3.Row
+        # WAL: чтение не ждёт записи, запись быстрее
+        _conn.execute("PRAGMA journal_mode=WAL")
+        _conn.execute("PRAGMA synchronous=NORMAL")
+        _conn.execute("PRAGMA busy_timeout=5000")
+    return _conn
 
 
 @contextmanager
 def get_conn():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    try:
-        yield conn
-        conn.commit()
-    except Exception:
-        conn.rollback()
-        raise
-    finally:
-        conn.close()
+    with _lock:
+        conn = _get_connection()
+        try:
+            yield conn
+            conn.commit()
+        except Exception:
+            conn.rollback()
+            raise
 
 
 def init_db():
@@ -54,6 +74,8 @@ def init_db():
 
 
 def user_exists(telegram_id: int) -> bool:
+    if telegram_id in _lang_cache:
+        return True
     try:
         with get_conn() as conn:
             row = conn.execute(
@@ -67,43 +89,51 @@ def user_exists(telegram_id: int) -> bool:
 
 def add_user(user) -> bool:
     try:
+        lang = (user.language_code or DEFAULT_LANG).split("-")[0]
+        username = user.username or "unknown"
         with get_conn() as conn:
-            existing = conn.execute(
-                "SELECT 1 FROM users WHERE telegram_id = ?", (user.id,)
-            ).fetchone()
-            if existing:
-                return False
-            lang = (user.language_code or "ru").split("-")[0]
-            username = user.username or "unknown"
-            conn.execute(
-                "INSERT INTO users (telegram_id, username, lang, reg_date) VALUES (?, ?, ?, ?)",
+            # INSERT OR IGNORE атомарен: нет гонки между проверкой и вставкой
+            cursor = conn.execute(
+                "INSERT OR IGNORE INTO users (telegram_id, username, lang, reg_date) VALUES (?, ?, ?, ?)",
                 (user.id, username, lang, datetime.now().strftime("%Y-%m-%d %H:%M:%S")),
             )
-            LOGGER.info(f"🆕 New user: id={user.id}, @{username}, lang={lang}")
-            return True
+        if cursor.rowcount == 0:
+            return False
+        _lang_cache[user.id] = lang
+        LOGGER.info(f"🆕 New user: id={user.id}, @{username}, lang={lang}")
+        return True
     except Exception as e:
         LOGGER.error(f"Error adding user {getattr(user, 'id', '?')}: {e}", exc_info=True)
         return False
 
 
 def get_lang(telegram_id: int) -> str:
+    cached = _lang_cache.get(telegram_id)
+    if cached:
+        return cached
     try:
         with get_conn() as conn:
             row = conn.execute(
                 "SELECT lang FROM users WHERE telegram_id = ?", (telegram_id,)
             ).fetchone()
-        return row["lang"] if row else "ru"
+        if not row:
+            return DEFAULT_LANG  # не кэшируем: пользователя ещё нет в базе
+        lang = row["lang"] or DEFAULT_LANG
+        _lang_cache[telegram_id] = lang
+        return lang
     except Exception as e:
         LOGGER.error(f"Error getting language for {telegram_id}: {e}", exc_info=True)
-        return "ru"
+        return DEFAULT_LANG
 
 
 def set_lang(telegram_id: int, lang: str) -> None:
     try:
         with get_conn() as conn:
-            conn.execute(
+            cursor = conn.execute(
                 "UPDATE users SET lang = ? WHERE telegram_id = ?", (lang, telegram_id)
             )
+        if cursor.rowcount > 0:
+            _lang_cache[telegram_id] = lang
         LOGGER.info(f"Language for user {telegram_id} changed to {lang}.")
     except Exception as e:
         LOGGER.error(f"Error setting language for {telegram_id}: {e}", exc_info=True)
