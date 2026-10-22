@@ -18,6 +18,10 @@ from modules.callback import admin_button_handler, owner_button_handler
 from shared.chatinfo import handle_message
 from config import BOT_TOKEN, LOG_GROUP_ID
 
+# Официальный Telegram Bot API по HTTPS.
+# Раньше логи шли по HTTP на сторонний IP, и токен бота передавался открытым текстом.
+TELEGRAM_API_BASE = "https://api.telegram.org"
+
 
 # =====================
 # 📦 Telegram Log Handler
@@ -25,7 +29,7 @@ from config import BOT_TOKEN, LOG_GROUP_ID
 class TelegramHandler(logging.Handler):
     def __init__(self):
         super().__init__()
-        self.api_url = f"http://176.101.56.195:8081/bot{BOT_TOKEN}/sendMessage"
+        self.api_url = f"{TELEGRAM_API_BASE}/bot{BOT_TOKEN}/sendMessage"
 
     def emit(self, record):
         try:
@@ -65,7 +69,8 @@ class TelegramHandler(logging.Handler):
                 timeout=5
             )
         except Exception as e:
-            print(f"[Logger Error] Telegram send failed: {e}")
+            # не выводим e целиком: в тексте ошибки requests может оказаться URL с токеном
+            print(f"[Logger Error] Telegram send failed: {type(e).__name__}")
 
 
 # =====================
